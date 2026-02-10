@@ -47,46 +47,37 @@ const Logo = ({ className = "w-10 h-10" }) => (
 const projectsData = [
   {
     id: 1,
-    title: "Full Stack Website",
-    description: "Dynamic web application built with HTML, CSS, PHP and SQL database. Features user authentication, CRUD operations, and responsive design.",
-    tags: ["Web", "PHP", "SQL"],
-    screenshot: "https://images.unsplash.com/photo-1547658719-da2b51169166?w=800&h=600&fit=crop",
-    repo: "#",
+    title: "RiyaGuru_LK - Driving School Management System",
+    description: "A full-stack MERN platform automating driving school operations with student registration, lesson booking, and progress tracking. Developed payment management with JWT authentication and role-based access control.",
+    tags: ["MERN", "React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
+    screenshot: "https://images.unsplash.com/photo-1606768666853-403c07a962b3?w=800&h=600&fit=crop",
+    repo: "https://github.com/ravindu-sliit/RiyaGuru",
     demo: "#"
   },
   {
     id: 2,
-    title: "Java Web Application",
-    description: "Enterprise-level web application using Java servlets, JSP, and MVC architecture. Implements business logic and database integration.",
-    tags: ["Web", "Java"],
-    screenshot: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=800&h=600&fit=crop",
-    repo: "#",
+    title: "WellNest Habit Tracker - Android App",
+    description: "An offline Android wellness app for habit tracking, mood journaling, and hydration reminders with shake-sensor integration and home-screen widget.",
+    tags: ["Kotlin", "Android Studio", "SharedPreferences", "Mobile"],
+    screenshot: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
+    repo: "https://github.com/SandaniChamoda/Wellnest-Habit-tracker-app",
     demo: "#"
   },
   {
     id: 3,
-    title: "MERN Stack Application",
-    description: "Full-stack application using MongoDB, Express, React, and Node.js. Real-time data updates and modern UI/UX patterns.",
-    tags: ["Web", "MERN"],
-    screenshot: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop",
+    title: "Hotel Customer Care System",
+    description: "Web-based customer support system with ticket submission, tracking, and feedback features. Developed with Java, MySQL, and Bootstrap.",
+    tags: ["Java", "MySQL", "Bootstrap", "Web"],
+    screenshot: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
     repo: "#",
     demo: "#"
   },
   {
     id: 4,
-    title: "Mobile App UI Design",
-    description: "Complete mobile application design system created in Figma. Includes wireframes, high-fidelity mockups, and interactive prototypes.",
-    tags: ["UI/UX", "Figma"],
-    screenshot: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&h=600&fit=crop",
-    repo: "#",
-    demo: "#"
-  },
-  {
-    id: 5,
-    title: "Habit Tracker Mobile App",
-    description: "Native mobile application for tracking daily habits. Features local notifications, progress charts, and streak tracking.",
-    tags: ["Mobile"],
-    screenshot: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?w=800&h=600&fit=crop",
+    title: "Vehicle Insurance Management System",
+    description: "Multi-role insurance platform with policy management and claims processing. Built with PHP and MySQL.",
+    tags: ["PHP", "MySQL", "Web"],
+    screenshot: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d8?w=800&h=600&fit=crop",
     repo: "#",
     demo: "#"
   }
@@ -261,7 +252,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 //Hero about
 const HeroAbout = () => {
   const [text, setText] = useState('');
-  const fullText = "IT Undergraduate | Data Science Enthusiast";
+  const fullText = "Full Stack Developer | MERN Stack | UI/UX Enthusiast";
   
   useEffect(() => {
     let index = 0;
@@ -303,21 +294,26 @@ const HeroAbout = () => {
             </div>
             {/* Bio */}
             <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              Pursuing a <span className="font-semibold text-purple-600">BSc in Information Technology</span> specializing in 
-              <span className="font-semibold text-blue-600"> Data Science</span> at Sri Lanka Institute of Information Technology (SLIIT). 
-              Passionate about creating innovative solutions through web development and exploring data analytics.
+              A detail-oriented <span className="font-semibold text-purple-600">BSc (Hons) in Information Technology</span> undergraduate at SLIIT with a 
+              <span className="font-semibold text-blue-600"> 3.6 GPA</span>. Skilled in MERN Stack, Java, and UI/UX with hands-on experience in 
+              full-stack development. Passionate about creating efficient, user-friendly applications and always eager to learn new technologies.
             </p>
 
             {/* Stats Counter */}
             <div className="flex items-center gap-8">
               <div className="text-center">
-                <div className="text-3xl font-bold text-blue-600">5+</div>
+                <div className="text-3xl font-bold text-blue-600">4+</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">Projects</div>
               </div>
               <div className="w-px h-12 bg-gray-300 dark:bg-gray-700"></div>
               <div className="text-center">
-                <div className="text-3xl font-bold text-purple-600">1+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Learning Experience</div>
+                <div className="text-3xl font-bold text-purple-600">6+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Months Experience</div>
+              </div>
+              <div className="w-px h-12 bg-gray-300 dark:bg-gray-700"></div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-blue-600">10+</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">Technologies</div>
               </div>
             </div>
 
@@ -342,27 +338,30 @@ const HeroAbout = () => {
             {/* Social Links */}
             <div className="flex gap-4">
               <a 
-                href="https://github.com" 
+                href="https://github.com/SandaniChamoda" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-purple-600 hover:text-white transition-all duration-300"
                 aria-label="GitHub"
+                title="GitHub"
               >
                 <Github className="w-5 h-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/sandani-chamoda" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-purple-600 hover:text-white transition-all duration-300"
                 aria-label="LinkedIn"
+                title="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
-                href="mailto:sandani@example.com" 
+                href="mailto:sandanichamoda450@gmail.com" 
                 className="p-3 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-purple-600 hover:text-white transition-all duration-300"
                 aria-label="Email"
+                title="Email"
               >
                 <Mail className="w-5 h-5" />
               </a>
@@ -389,84 +388,21 @@ const HeroAbout = () => {
   );
 };
 
-
-
 // Education & Experience Section
 const EducationExperience = () => {
   return (
     <section id="education" className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-900/20">
       <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Education & Experience
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            My academic journey, professional certifications, and work experience
-          </p>
+          <div className="w-20 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto rounded-full"></div>
         </div>
 
-        <div className="grid lg:grid-cols-5 gap-8">
-          {/* Education Column */}
-          <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 transition-all duration-300 sticky top-24">
-              <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white flex items-center gap-3">
-                <GraduationCap className="w-6 h-6 text-blue-500" />
-                Education
-              </h3>
-              
-              <div className="space-y-6">
-                {/* SLIIT */}
-                <div className="relative pl-8 pb-6 border-l-2 border-gray-300 dark:border-gray-700">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-orange-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-orange-500/50"></div>
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-gray-800 dark:text-white">
-                      BSc in Information Technology
-                    </h4>
-                    <span className="px-2 py-1 bg-orange-500/20 text-orange-600 dark:text-orange-400 text-xs font-semibold rounded-full border border-orange-500/30">
-                      Present
-                    </span>
-                  </div>
-                  <p className="text-orange-600 dark:text-orange-400 font-semibold text-sm mb-1">
-                    Sri Lanka Institute of Information Technology
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">
-                    2021 - Present • Data Science Specialization
-                  </p>
-                  <div className="flex flex-wrap gap-1 mt-2">
-                    <span className="px-2 py-1 bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs rounded-full border border-blue-500/30">GPA: 3.5/4.0</span>
-                    <span className="px-2 py-1 bg-green-500/20 text-green-600 dark:text-green-400 text-xs rounded-full border border-green-500/30">Dean's List</span>
-                  </div>
-                </div>
-
-                {/* School Education */}
-                <div className="relative pl-8">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-blue-500/50"></div>
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-gray-800 dark:text-white">
-                      G.C.E. Advanced Level
-                    </h4>
-                    <span className="px-2 py-1 bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-semibold rounded-full border border-blue-500/30">
-                      2020
-                    </span>
-                  </div>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mb-1">
-                    Sangamiththa Balika Vidyalaya
-                  </p>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs mb-2">
-                    Physical Science Stream • Combined Mathematics
-                  </p>
-                  <p className="text-gray-700 dark:text-gray-300 text-sm">
-                    Achieved top results in Mathematics and Science subjects
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Certificates & Experience Columns */}
-          <div className="lg:col-span-3 space-y-8">
-            {/* Certificates */}
+        <div className="grid lg:grid-cols-2 gap-8">
+          {/* Certificates Section */}
+          <div className="space-y-8">
             <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-2xl border border-gray-200 dark:border-gray-800 hover:border-orange-500/50 transition-all duration-300">
               <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white flex items-center gap-3">
                 <div className="w-6 h-6 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-lg shadow-orange-500/50">
@@ -477,159 +413,153 @@ const EducationExperience = () => {
                 Certifications
               </h3>
 
-              <div className="grid md:grid-cols-2 gap-4">
+              <div className="space-y-4">
                 {/* HRM Certificate */}
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-orange-500/10">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-bold text-gray-800 dark:text-white text-sm">
-                        Human Resource Management
-                      </h4>
-                      <p className="text-orange-600 dark:text-orange-400 text-xs font-semibold">
-                        IMS Campus
-                      </p>
-                    </div>
-                    <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
-                      2021
-                    </span>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs">
-                    Professional certification in HR management principles and practices
+                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-orange-200 dark:border-orange-900/50 hover:border-orange-300 dark:hover:border-orange-700 transition-all duration-300">
+                  <h4 className="font-bold text-gray-800 dark:text-white text-lg mb-1">
+                    Certificate in Human Resource Management
+                  </h4>
+                  <p className="text-orange-600 dark:text-orange-400 text-sm font-semibold mb-2">
+                    IMS Campus, Faculty of Management Studies
+                  </p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    March 2022 - June 2022
                   </p>
                 </div>
 
-                {/* Google Cloud Certificates */}
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-bold text-gray-800 dark:text-white text-sm">
-                        MLOps for Generative AI
-                      </h4>
-                      <p className="text-blue-600 dark:text-blue-400 text-xs font-semibold">
-                        Google Cloud Skills Boost
-                      </p>
-                    </div>
-                    <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
-                      2024
-                    </span>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs">
-                    Machine Learning Operations for Generative AI applications
+                {/* AI/ML Certificate */}
+                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-blue-200 dark:border-blue-900/50 hover:border-blue-300 dark:hover:border-blue-700 transition-all duration-300">
+                  <h4 className="font-bold text-gray-800 dark:text-white text-lg mb-1">
+                    Artificial Intelligence & Machine Learning
+                  </h4>
+                  <p className="text-blue-600 dark:text-blue-400 text-sm font-semibold mb-2">
+                    Sri Lanka Institute of Information Technology (SLIIT)
+                  </p>
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    In Progress
                   </p>
                 </div>
 
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-bold text-gray-800 dark:text-white text-sm">
-                        Introduction to Generative AI
-                      </h4>
-                      <p className="text-purple-600 dark:text-purple-400 text-xs font-semibold">
-                        Google Cloud Skills Boost
-                      </p>
-                    </div>
-                    <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
-                      2024
-                    </span>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs">
-                    Fundamentals of Generative AI and its applications
+                {/* Python Certificate */}
+                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-6 border border-yellow-200 dark:border-yellow-900/50 hover:border-yellow-300 dark:hover:border-yellow-700 transition-all duration-300">
+                  <h4 className="font-bold text-gray-800 dark:text-white text-lg mb-1">
+                    Beginner's Python
+                  </h4>
+                  <p className="text-yellow-600 dark:text-yellow-400 text-sm font-semibold mb-2">
+                    University of Moratuwa
                   </p>
-                </div>
-
-                <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
-                  <div className="flex items-start justify-between mb-3">
-                    <div>
-                      <h4 className="font-bold text-gray-800 dark:text-white text-sm">
-                        Microsoft Azure Fundamentals
-                      </h4>
-                      <p className="text-blue-600 dark:text-blue-400 text-xs font-semibold">
-                        Microsoft
-                      </p>
-                    </div>
-                    <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
-                      2024
-                    </span>
-                  </div>
-                  <p className="text-gray-600 dark:text-gray-400 text-xs">
-                    Cloud computing fundamentals and Azure services
+                  <p className="text-gray-500 dark:text-gray-400 text-sm">
+                    In Progress
                   </p>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Experience */}
-            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-2xl border border-gray-200 dark:border-gray-800 hover:border-purple-500/50 transition-all duration-300">
+          {/* Experience Section */}
+          <div className="space-y-8">
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-2xl border border-gray-200 dark:border-gray-800 hover:border-blue-500/50 transition-all duration-300">
               <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white flex items-center gap-3">
                 <Briefcase className="w-6 h-6 text-blue-500" />
-                Experience
+                Work Experience
               </h3>
 
-              <div className="space-y-6">
-                {/* Peoples Bank Internship */}
-                <div className="relative pl-8 pb-6 border-l-2 border-gray-300 dark:border-gray-700">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-blue-500/50"></div>
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-gray-800 dark:text-white">
-                      Internship Trainee
-                    </h4>
-                    <span className="px-2 py-1 bg-blue-500/20 text-blue-600 dark:text-blue-400 text-xs font-semibold rounded-full border border-blue-500/30">
-                      Feb - Aug 2022
-                    </span>
-                  </div>
-                  <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mb-3">
-                    Peoples Bank - Galle Main Street Branch
-                  </p>
-                  <div className="grid md:grid-cols-2 gap-3 text-sm">
-                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      Cash counter operations
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      Customer service management
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      Pawnbroking operations
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-700 dark:text-gray-300">
-                      <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
-                      Financial documentation
-                    </div>
-                  </div>
+              <div className="relative pl-8 pb-6 border-l-2 border-blue-500/30">
+                <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-blue-500/50"></div>
+                <div className="flex justify-between items-start mb-2">
+                  <h4 className="text-lg font-bold text-gray-800 dark:text-white">
+                    Intern
+                  </h4>
+                  <span className="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 text-xs font-semibold rounded-full border border-blue-200 dark:border-blue-800">
+                    Feb 2023 – Aug 2023
+                  </span>
                 </div>
-
-                {/* Current Skills Focus */}
-                <div className="relative pl-8">
-                  <div className="absolute -left-2 top-0 w-4 h-4 bg-purple-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-purple-500/50"></div>
-                  <div className="flex justify-between items-start mb-2">
-                    <h4 className="text-lg font-bold text-gray-800 dark:text-white">
-                      Skills Development
-                    </h4>
-                    <span className="px-2 py-1 bg-purple-500/20 text-purple-600 dark:text-purple-400 text-xs font-semibold rounded-full border border-purple-500/30">
-                      Ongoing
-                    </span>
-                  </div>
-                  <p className="text-purple-600 dark:text-purple-400 font-semibold text-sm mb-3">
-                    Self-Learning & University Projects
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full border border-gray-300 dark:border-gray-700 hover:border-purple-500/50 transition-all duration-300">
-                      Full-stack Development
-                    </span>
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full border border-gray-300 dark:border-gray-700 hover:border-blue-500/50 transition-all duration-300">
-                      Data Analysis
-                    </span>
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full border border-gray-300 dark:border-gray-700 hover:border-pink-500/50 transition-all duration-300">
-                      UI/UX Design
-                    </span>
-                    <span className="px-3 py-1 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm rounded-full border border-gray-300 dark:border-gray-700 hover:border-green-500/50 transition-all duration-300">
-                      Mobile Development
-                    </span>
-                  </div>
-                </div>
+                <p className="text-blue-600 dark:text-blue-400 font-semibold text-sm mb-4">
+                  People's Bank, Galle Main Street Branch
+                </p>
+                
+                <ul className="space-y-3 text-gray-600 dark:text-gray-400 text-sm">
+                  <li className="flex items-start">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span>Supported customers with digital banking registrations, mobile app setup, and troubleshooting, contributing to a 15–20% increase in digital service adoption during the period.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span>Used internal banking systems for data entry, account processing, and transaction handling with 99% accuracy in records and compliance.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span>Assisted front-office operations and customer inquiries, supporting smooth service for 100+ customers daily.</span>
+                  </li>
+                  <li className="flex items-start">
+                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
+                    <span>Supported account services, remittances, and promoted bank products and digital services to increase customer engagement.</span>
+                  </li>
+                </ul>
               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Additional certificates section */}
+        <div className="mt-8">
+          <div className="space-y-4">
+            {/* Google Cloud Certificates */}
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h4 className="font-bold text-gray-800 dark:text-white text-sm">
+                    MLOps for Generative AI
+                  </h4>
+                  <p className="text-blue-600 dark:text-blue-400 text-xs font-semibold">
+                    Google Cloud Skills Boost
+                  </p>
+                </div>
+                <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
+                  2024
+                </span>
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 text-xs">
+                Machine Learning Operations for Generative AI applications
+              </p>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h4 className="font-bold text-gray-800 dark:text-white text-sm">
+                    Introduction to Generative AI
+                  </h4>
+                  <p className="text-purple-600 dark:text-purple-400 text-xs font-semibold">
+                    Google Cloud Skills Boost
+                  </p>
+                </div>
+                <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
+                  2024
+                </span>
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 text-xs">
+                Fundamentals of Generative AI and its applications
+              </p>
+            </div>
+
+            <div className="bg-gray-50 dark:bg-gray-800/50 rounded-xl p-4 border border-gray-200 dark:border-gray-700 hover:border-gray-300 dark:hover:border-gray-600 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <h4 className="font-bold text-gray-800 dark:text-white text-sm">
+                    Microsoft Azure Fundamentals
+                  </h4>
+                  <p className="text-blue-600 dark:text-blue-400 text-xs font-semibold">
+                    Microsoft
+                  </p>
+                </div>
+                <span className="px-2 py-1 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 text-xs rounded-full border border-gray-300 dark:border-gray-600">
+                  2024
+                </span>
+              </div>
+              <p className="text-gray-600 dark:text-gray-400 text-xs">
+                Cloud computing fundamentals and Azure services
+              </p>
             </div>
           </div>
         </div>
@@ -835,8 +765,6 @@ const Skills = () => {
     </section>
   );
 };
-
-
 
 // Project Card Component
 const ProjectCard = ({ project }) => {
