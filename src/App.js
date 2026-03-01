@@ -268,12 +268,12 @@ const HeroAbout = () => {
   }, []);
 
   return (
-    <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-900/20">
+    <section id="home" className="relative min-h-screen flex items-center justify-center pt-32 pb-16 px-4 overflow-hidden bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-900/20">
       {/* Subtle Background Gradient */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-900/20"></div>
 
       <div className="max-w-6xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-start">
           
           {/* Left Side - Content */}
           <div className="space-y-8">
@@ -287,7 +287,7 @@ const HeroAbout = () => {
               </h1>
               
               <div className="h-8">
-                <p className="text-lg sm:text-xl md:text-2xl text-gray-600 dark:text-gray-400 font-medium">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 dark:text-gray-400 font-medium">
                   {text}<span className="animate-pulse text-purple-600">|</span>
                 </p>
               </div>
@@ -318,20 +318,27 @@ const HeroAbout = () => {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-wrap gap-4">
+            <div className="flex gap-4">
               <a
                 href="#projects"
-                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2"
+                className="px-8 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:shadow-lg transition-all duration-300 flex items-center gap-2"
               >
-                <span>View My Work</span>
+                <span className="whitespace-nowrap">View My Work</span>
               </a>
               <a
-                href="/resume.pdf"
+                href="/Sandani Chamoda CV.pdf"
                 download
-                className="px-6 py-3 bg-transparent border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center gap-2"
+                className="px-8 py-2 bg-transparent border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center gap-2"
               >
                 <Download className="w-4 h-4" />
-                <span>Download CV</span>
+                <span className="whitespace-nowrap">Download CV</span>
+              </a>
+              <a
+                href="#contact"
+                className="px-8 py-2 bg-transparent border-2 border-purple-600 text-purple-600 dark:text-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white transition-all duration-300 flex items-center gap-2"
+              >
+                <Mail className="w-4 h-4" />
+                <span className="whitespace-nowrap">Connect with Me</span>
               </a>
             </div>
 
@@ -372,7 +379,7 @@ const HeroAbout = () => {
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
               {/* Profile Image with Elegant Shadow */}
-              <div className="w-72 h-72 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-2xl border-8 border-white dark:border-gray-800">
+              <div className="w-72 h-72 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
                 <img
                   src="/profile.png"
                   alt="Sandani Chamoda"
@@ -390,6 +397,17 @@ const HeroAbout = () => {
 
 // Education & Experience Section
 const EducationExperience = () => {
+  const [showGallery, setShowGallery] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
+
+  const toggleGallery = () => {
+    setShowGallery(!showGallery);
+  };
+
+  const toggleCertificate = () => {
+    setShowCertificate(!showCertificate);
+  };
+
   return (
     <section id="education" className="py-20 px-4 bg-gradient-to-br from-gray-50 via-white to-purple-50 dark:from-gray-900 dark:via-gray-950 dark:to-purple-900/20">
       <div className="max-w-7xl mx-auto">
@@ -478,28 +496,91 @@ const EducationExperience = () => {
                   People's Bank, Galle Main Street Branch
                 </p>
                 
-                <ul className="space-y-3 text-gray-600 dark:text-gray-400 text-sm">
+                <ul className="space-y-3 text-gray-600 dark:text-gray-400 text-sm mb-6">
                   <li className="flex items-start">
                     <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
-                    <span>Supported customers with digital banking registrations, mobile app setup, and troubleshooting, contributing to a 15–20% increase in digital service adoption during the period.</span>
+                    <span>Facilitated digital transformation by guiding customers through online banking platform setup, mobile app integration, and troubleshooting technical issues, resulting in 15–20% increase in digital adoption rates.</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
-                    <span>Used internal banking systems for data entry, account processing, and transaction handling with 99% accuracy in records and compliance.</span>
+                    <span>Leveraged banking software systems for efficient data management, account processing, and transaction recording with 99% accuracy, ensuring compliance with digital security protocols.</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
-                    <span>Assisted front-office operations and customer inquiries, supporting smooth service for 100+ customers daily.</span>
+                    <span>Provided technical support for digital banking services, assisting 100+ customers daily with online transactions, mobile banking features, and digital payment solutions.</span>
                   </li>
                   <li className="flex items-start">
                     <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0"></div>
-                    <span>Supported account services, remittances, and promoted bank products and digital services to increase customer engagement.</span>
+                    <span>Promoted digital banking products and fintech solutions, educating customers on cybersecurity best practices and digital financial management tools to enhance user engagement.</span>
                   </li>
                 </ul>
+
+                {/* Certificate & Gallery Links */}
+                <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <button
+                    onClick={toggleCertificate}
+                    className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-300 text-sm"
+                  >
+                    <span>🔗</span>
+                    View Service Certificate
+                  </button>
+                  <div className="flex items-center gap-2 cursor-pointer hover:text-purple-600 transition-colors duration-300" onClick={toggleGallery}>
+                    <span className="text-purple-600">📷</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">Internship Gallery</span>
+                  </div>
+                </div>
+
+                {/* Gallery Images */}
+                {showGallery &&S  (
+                  <div className="grid grid-cols-2 gap-3 mt-4 transition-all duration-300">
+                    <div className="relative group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300">
+                      <img
+                        src="/internship-1.jpg"
+                        alt="Internship Photo 1"
+                        className="w-full h-24 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    </div>
+                    <div className="relative group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300">
+                      <img
+                        src="/internship-2.jpg"
+                        alt="Internship Photo 2"
+                        className="w-full h-24 object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300"></div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
         </div>
+
+        {/* Certificate Modal */}
+        {showCertificate && (
+          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={toggleCertificate}>
+            <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-4xl max-h-[90vh] overflow-auto" onClick={(e) => e.stopPropagation()}>
+              <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-4 flex justify-between items-center">
+                <h3 className="text-xl font-bold text-gray-800 dark:text-white">Service Certificate</h3>
+                <button
+                  onClick={toggleCertificate}
+                  className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              <div className="p-4">
+                <img
+                  src="/service-certificate.pdf.jpeg"
+                  alt="Service Certificate"
+                  className="w-full h-auto rounded-lg"
+                />
+              </div>
+            </div>
+          </div>
+        )}
 
         {/* Additional certificates section */}
         <div className="mt-8">
@@ -1208,7 +1289,7 @@ const App = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 transition-colors duration-300">
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -1218,6 +1299,14 @@ const App = () => {
         
         html {
           scroll-behavior: smooth;
+        }
+        
+        body {
+          background-color: #f9fafb;
+        }
+        
+        .dark body {
+          background-color: #111827;
         }
         
         .custom-cursor {
