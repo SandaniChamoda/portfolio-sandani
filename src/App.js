@@ -116,6 +116,82 @@ const Logo = ({ className = "w-10 h-10" }) => (
   </svg>
 );
 
+// Certifications data
+const certificationsData = [
+  {
+    id: 1,
+    title: "Computer Hardware Basics",
+    issuer: "Cisco Networking Academy",
+    issueDate: "2026",
+    status: "Completed",
+    logo: "/certificate/cisco-logo.png",
+    image: "/certificate/cisco-hardware.jpg",
+    description: "Completed student-level training in computer hardware components, device maintenance, troubleshooting, and safety basics.",
+    skills: "Hardware · Maintenance · Troubleshooting",
+    certificateLink: "/certificate/cisco-hardware.pdf"
+  },
+  {
+    id: 2,
+    title: "AI/ML Engineer - Stage 1",
+    issuer: "SLIIT",
+    issueDate: "2026",
+    status: "Completed",
+    logo: "/certificate/sliit-logo.png",
+    image: "/certificate/aiml-stage-1.jpg",
+    description: "Completed foundational learning in artificial intelligence and machine learning concepts through SLIIT CODL.",
+    skills: "AI · Machine Learning · Python",
+    certificateLink: "/certificate/aiml-stage-1.pdf"
+  },
+  {
+    id: 3,
+    title: "DesignX 2025 Workshop Series",
+    issuer: "IEEE Computer Society / UCSC",
+    issueDate: "2026",
+    status: "Completed",
+    logo: "/certificate/ieee-logo.png",
+    image: "/certificate/designx-2025.jpg",
+    description: "Participated in UI/UX focused workshops covering user experience foundations, visual design, and Figma systems.",
+    skills: "UI/UX · Figma · Design Systems",
+    certificateLink: "/certificate/designx-2025.pdf"
+  },
+  {
+    id: 4,
+    title: "Python for Beginners",
+    issuer: "University of Moratuwa",
+    issueDate: "2025",
+    status: "Completed",
+    logo: "/certificate/uom-logo.png",
+    image: "/certificate/python-beginners.jpg",
+    description: "Completed beginner-level Python programming training focused on programming logic and practical coding fundamentals.",
+    skills: "Python · Programming · Problem Solving",
+    certificateLink: "/certificate/python-beginners.pdf"
+  },
+  {
+    id: 5,
+    title: "Certificate in Human Resource Management",
+    issuer: "IMS Campus",
+    issueDate: "2022",
+    status: "Completed",
+    logo: "/certificate/ims-logo.png",
+    image: "/certificate/hr-management.jpg",
+    description: "Completed HRM training covering recruitment, human resource planning, labour law basics, and organizational behavior.",
+    skills: "HRM · Management · Communication",
+    certificateLink: "/certificate/hr-management.pdf"
+  },
+  {
+    id: 6,
+    title: "MongoDB User Model & Backend Development",
+    issuer: "Self Learning",
+    issueDate: "In Progress",
+    status: "In Progress",
+    logo: "/certificate/mongodb-logo.png",
+    image: "/certificate/mongodb-user-model.jpg",
+    description: "Currently learning MongoDB schema design, user models, authentication flow, and backend data handling.",
+    skills: "MongoDB · User Model · Backend",
+    certificateLink: ""
+  }
+];
+
 // Projects data
 const projectsData = [
   {
@@ -124,7 +200,7 @@ const projectsData = [
     description: "A full-stack platform helping students prepare for internships with secure authentication, profile management, and role-based quizzes. Built with a modern, scalable tech stack.",
     tags: ["Full Stack", "Auth", "Quizzes", "Web"],
     screenshot: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/Internship-and-Job-preparation-platform.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda/Internship-and-Job-preparation-platform.git",
     demo: "/videos/HireSmart.mp4"
   },
   {
@@ -133,7 +209,7 @@ const projectsData = [
     description: "Developed the ticketing module for reporting, tracking, and resolving campus incidents with status workflows and role-based access.",
     tags: ["Spring Boot", "React", "MySQL", "REST APIs"],
     screenshot: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49.git",
     demo: "/videos/Vertexone.mp4"
   },
   {
@@ -142,7 +218,7 @@ const projectsData = [
     description: "A MERN platform for managing driving school operations, including booking and progress tracking. Implemented secure payments with JWT authentication and role-based access control.",
     tags: ["MERN", "React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     screenshot: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/RiyaGuru.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda/RiyaGuru.git",
     demo: "/videos/Riyaguru.mp4"
   },
   {
@@ -151,7 +227,7 @@ const projectsData = [
     description: "An offline Android wellness app for habit tracking, mood journaling, and hydration reminders with shake-sensor integration and home-screen widget.",
     tags: ["Kotlin", "Android Studio", "SharedPreferences", "Mobile"],
     screenshot: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/Wellnest-Habit-tracker-app.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda/Wellnest-Habit-tracker-app.git",
     demo: "/videos/WellNest.mp4"
   },
   {
@@ -160,7 +236,7 @@ const projectsData = [
     description: "Web-based customer support system with ticket submission, tracking, and feedback features. Developed with Java, MySQL, and Bootstrap.",
     tags: ["Java", "MySQL", "Bootstrap", "Web"],
     screenshot: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/hotel-customer-care.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda/hotel-customer-care.git",
     demo: "https://youtu.be/hotel-customer-care-demo"
   },
   {
@@ -169,7 +245,7 @@ const projectsData = [
     description: "Multi-role insurance platform with policy management and claims processing. Built with PHP and MySQL.",
     tags: ["PHP", "MySQL", "Web"],
     screenshot: "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=800&h=600&fit=crop",
-    repo: "https://github.com/your-username/vehicle-insurance-system",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda/vehicle-insurance-system.git",
     demo: "https://youtu.be/vehicle-insurance-demo"
   }
 ];
@@ -268,6 +344,7 @@ const Navbar = ({ theme, toggleTheme }) => {
     { name: 'Home', href: '#home' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
+    { name: 'Certifications', href: '#certifications' },
     { name: 'Contact', href: '#contact' }
   ];
 
@@ -299,13 +376,13 @@ const Navbar = ({ theme, toggleTheme }) => {
           {/* Right - Social Media Icons (Desktop) */}
           <div className="hidden md:flex items-center space-x-4">
             {/* LinkedIn */}
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
+            <a href="https://www.linkedin.com/in/sandani-chamoda/" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-300 hover:text-white transition-colors" aria-label="LinkedIn">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/>
               </svg>
             </a>
             {/* Instagram */}
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-300 hover:text-pink-400 transition-colors" aria-label="Instagram">
+            <a href="https://www.instagram.com/s__chamoo/" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-300 hover:text-pink-400 transition-colors" aria-label="Instagram">
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1112.324 0 6.162 6.162 0 01-12.324 0zM12 16a4 4 0 110-8 4 4 0 010 8zm4.965-10.322a1.44 1.44 0 110-2.88 1.44 1.44 0 010 2.88z"/>
               </svg>
@@ -541,68 +618,219 @@ const LetterGlitch = () => {
   );
 };
 
+// Certificate Card Component
+const CertificateCard = ({ certificate, index }) => {
+  const [showCredential, setShowCredential] = useState(false);
+  const isCompleted = certificate.status === "Completed";
+
+  return (
+    <div
+      className="group h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.30)] transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30"
+      style={{
+        animationDelay: `${index * 100}ms`,
+        animation: "fadeInUp 0.6s ease-out forwards"
+      }}
+    >
+      <div className="p-5">
+        <div className="mb-4 flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/10">
+            <img
+              src={certificate.logo}
+              alt={certificate.issuer}
+              className="h-7 w-7 object-contain"
+            />
+          </div>
+
+          <div className="min-w-0">
+            <h3 className="line-clamp-1 text-base font-semibold text-white">
+              {certificate.title}
+            </h3>
+            <p className="text-xs text-gray-400">
+              {certificate.issuer} · {certificate.issueDate}
+            </p>
+          </div>
+        </div>
+
+        <div className="mb-4 overflow-hidden rounded-xl border border-white/10 bg-black/20">
+          <img
+            src={certificate.image}
+            alt={certificate.title}
+            className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </div>
+
+        <p className="mb-3 text-sm leading-relaxed text-gray-400">
+          {certificate.description}
+        </p>
+
+        <p className="mb-5 text-xs text-gray-500">
+          {certificate.skills}
+        </p>
+
+        {isCompleted ? (
+          <button
+            type="button"
+            onClick={() => setShowCredential(true)}
+            className="inline-flex items-center gap-2 rounded-lg border border-purple-400/20 bg-purple-500/10 px-4 py-2 text-xs font-semibold text-purple-200 transition-all duration-300 hover:bg-purple-500/20 hover:text-white"
+          >
+            <ExternalLink className="h-4 w-4" />
+            View Certificate
+          </button>
+        ) : (
+          <span className="inline-flex rounded-full border border-yellow-400/20 bg-yellow-400/10 px-4 py-2 text-xs font-semibold text-yellow-300">
+            In Progress
+          </span>
+        )}
+      </div>
+
+      {showCredential && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-[#070915]/80 px-4 py-8 backdrop-blur-lg"
+          onClick={() => setShowCredential(false)}
+        >
+          <div
+            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-purple-400/20 bg-[#0b0f2b] shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-purple-200/70">
+                  Certificate Preview
+                </p>
+                <h3 className="text-xl font-semibold text-white">
+                  {certificate.title}
+                </h3>
+              </div>
+
+              <button
+                type="button"
+                onClick={() => setShowCredential(false)}
+                className="rounded-full p-2 text-white/70 transition hover:bg-white/10 hover:text-white"
+              >
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+
+            <div className="max-h-[75vh] overflow-auto p-5">
+              <img
+                src={certificate.image}
+                alt={certificate.title}
+                className="mx-auto w-full max-w-4xl rounded-2xl border border-white/10"
+              />
+
+              {certificate.certificateLink && (
+                <div className="mt-5 text-center">
+                  <a
+                    href={certificate.certificateLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-2 text-xs font-semibold text-cyan-100 hover:bg-cyan-500/20"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    Open Certificate
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+// Modern Certifications Component
+const ModernCertifications = () => {
+  return (
+    <section id="certifications" className="py-20 px-4 bg-transparent">
+      <div className="max-w-7xl mx-auto">
+        {/* Section Header */}
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+            <span className="text-gray-800 dark:text-white">Licenses & </span>
+            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Certifications</span>
+          </h2>
+          <p className="text-gray-600 dark:text-gray-400 text-base max-w-2xl mx-auto">
+            Professional certifications and continuous learning achievements
+          </p>
+        </div>
+
+        {/* Certifications Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certificationsData.map((certificate, index) => (
+            <CertificateCard key={certificate.id} certificate={certificate} index={index} />
+          ))}
+        </div>
+
+        {certificationsData.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-gray-600 dark:text-gray-400 text-base">No certifications available at the moment.</p>
+          </div>
+        )}
+      </div>
+    </section>
+  );
+};
+
 const EducationExperience = () => {
-  const [showGallery, setShowGallery] = useState(false);
-  const [showCertificate, setShowCertificate] = useState(false);
-
-  const toggleGallery = () => setShowGallery(!showGallery);
-  const toggleCertificate = () => setShowCertificate(!showCertificate);
-
   return (
    <section id="education" className="relative py-8 px-4 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-4">
           <h2 className="text-4xl md:text-5xl font-bold mb-3">
-    <span className="text-white">Education & </span>
-    <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent">
-      Experience
-    </span>
+    <span className="text-white">Education</span>
   </h2>
            <p className="text-gray-400 text-base max-w-2xl mx-auto">
-    My academic journey, certifications, and practical experience
+    My academic journey and qualifications
   </p>
         </div>
 
-       <div className="grid lg:grid-cols-2 gap-6 items-center max-w-6xl mx-auto ">
-          {/* LEFT - Certifications */}
+       <div className="grid lg:grid-cols-2 gap-6 items-center max-w-6xl mx-auto">
+          {/* LEFT - Education Info */}
           <div className="flex justify-center">
-            <div className="w-full max-w-[520px] bg-white/5 dark:bg-gray-900/80 rounded-2xl p-5 shadow-2xl border border-gray-800/80 backdrop-blur-sm">
-              <h3 className="text-xl font-bold mb-5 text-white flex items-center gap-4">
-                <div className="w-6 h-6 bg-gradient-to-r from-orange-500 to-orange-600 rounded-full flex items-center justify-center shadow-md">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                Certifications
+            <div className="w-full max-w-[520px] h-[320px] bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
+              <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
+                <GraduationCap className="h-4 w-4 text-purple-400" />
+                Education
               </h3>
 
-              <div className="space-y-4">
-                <div className="bg-gray-800/40 rounded-xl p-4 border border-orange-500/20 hover:border-orange-400/40 transition">
-                  <h4 className="font-semibold text-white text-sm mb-1">
-                    Certificate in Human Resource Management
+              <div className="space-y-2 ">
+                <div className="bg-white/5 rounded-lg p-2.5 bospace-y-3rder border-purple-500/10">
+                  <h4 className="font-semibold text-white text-xs leading-tight">
+                    BSc (Hons) in Information Technology
                   </h4>
-                  <p className="text-orange-400 text-xs font-medium mb-1">
-                    IMS Campus, Faculty of Management Studies
+                  <p className="text-xs text-purple-300 leading-tight">
+                    Specializing in Information Technology
                   </p>
-                  <p className="text-gray-400 text-xs">March 2022 - June 2022</p>
+                  <p className="text-xs text-gray-400 leading-tight">
+                    Sri Lanka Institute of Information Technology (SLIIT)
+                  </p>
+                  <p className="text-xs font-medium text-blue-300">
+                    Present · GPA: 3.73
+                  </p>
                 </div>
 
-                <div className="bg-gray-800/40 rounded-xl p-4 border border-blue-500/20 hover:border-blue-400/40 transition">
-                  <h4 className="font-semibold text-white text-sm mb-1">
-                    Artificial Intelligence & Machine Learning
-                  </h4>
-                  <p className="text-blue-400 text-xs font-medium mb-1">SLIIT</p>
-                  <p className="text-gray-400 text-xs">In Progress</p>
+                <div className="bg-white/5 rounded-lg p-2.5 border border-blue-500/10">
+                  <h4 className="font-semibold text-white text-xs leading-tight">G.C.E. Advanced Level</h4>
+                  <p className="text-xs text-blue-300 leading-tight">
+                    Artificial Intelligence Stream
+                  </p>
+                  <p className="text-xs text-gray-400 leading-tight">
+                    Sangamiththa Balika Vidyalaya, Galle
+                  </p>
+                  <p className="text-xs font-medium text-gray-300">
+                    2021 · A, C, S — Maths, Physics, ICT
+                  </p>
                 </div>
 
-                <div className="bg-gray-800/40 rounded-xl p-4 border border-yellow-500/20 hover:border-yellow-400/40 transition">
-                  <h4 className="font-semibold text-white text-sm mb-1">
-                    Beginner&apos;s Python
-                  </h4>
-                  <p className="text-yellow-400 text-xs font-medium mb-1">
-                    University of Moratuwa
+                <div className="bg-white/5 rounded-lg p-2.5 border border-cyan-500/10">
+                  <h4 className="font-semibold text-white text-xs leading-tight">G.C.E. Ordinary Level</h4>
+                  <p className="text-xs text-gray-400 leading-tight">
+                    Sangamiththa Balika Vidyalaya, Galle
                   </p>
-                  <p className="text-gray-400 text-xs">In Progress</p>
+                  <p className="text-xs font-medium text-cyan-300">
+                    2018
+                  </p>
                 </div>
               </div>
             </div>
@@ -615,89 +843,93 @@ const EducationExperience = () => {
             </div>
           </div>
         </div>
+      </div>
+    </section>
+  );
+};
 
-        <div className="mt-8 grid lg:grid-cols-2 gap-8 items-start">
-          <div className="space-y-8">
-            <div className="bg-white/5 dark:bg-gray-900/80 rounded-2xl p-5 shadow-2xl border border-gray-800/80 hover:border-blue-500/40 transition-all duration-300">
-              <h3 className="text-xl font-bold mb-5 text-white flex items-center gap-3">
-                <Briefcase className="w-5 h-5 text-blue-500" />
-                Work Experience
-              </h3>
+// Work Experience Component
+const WorkExperience = () => {
+  const [showGallery, setShowGallery] = useState(false);
+  const [showCertificate, setShowCertificate] = useState(false);
 
-              <div className="relative pl-7 pb-4 border-l-2 border-blue-500/30">
-                <div className="absolute -left-2 top-0 w-4 h-4 bg-blue-500 rounded-full border-4 border-gray-900 shadow-lg shadow-blue-500/50" />
+  const toggleGallery = () => setShowGallery(!showGallery);
+  const toggleCertificate = () => setShowCertificate(!showCertificate);
 
-                <div className="flex justify-between items-start mb-2">
-                  <h4 className="text-base font-bold text-white">Intern</h4>
-                  <span className="px-3 py-1 bg-blue-900/30 text-blue-300 text-xs font-semibold rounded-full border border-blue-800">
-                    Feb 2023 – Aug 2023
-                  </span>
-                </div>
+  return (
+    <section id="experience" className="relative py-20 px-4 bg-transparent overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-12">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-white">Work </span>
+            <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+              Experience
+            </span>
+          </h2>
+          <p className="text-gray-400 text-base max-w-2xl mx-auto">
+            Professional experience and practical skills development
+          </p>
+        </div>
 
-                <p className="text-blue-400 font-semibold text-sm mb-4">
-                  People's Bank, Galle Main Street Branch
-                </p>
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 mx-auto max-w-5xl">
+          <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
+            <Briefcase className="h-4 w-4 text-blue-400" />
+            Work Experience
+          </h3>
 
-                <ul className="space-y-3 text-gray-400 text-sm mb-5">
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0" />
-                    <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0" />
-                    <span>Used banking software for accurate account processing, transaction recording, and customer support.</span>
-                  </li>
-                  <li className="flex items-start">
-                    <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 mr-2 flex-shrink-0" />
-                    <span>Supported customers with mobile banking features, online transactions, and digital payment solutions.</span>
-                  </li>
-                </ul>
-
-                <div className="flex flex-wrap gap-4 pt-4 border-t border-gray-700">
-                  <button
-                    onClick={toggleCertificate}
-                    className="inline-flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-700 transition-colors duration-300 text-sm"
-                  >
-                    <span>🔗</span>
-                    View Service Certificate
-                  </button>
-
-                  <div
-                    className="flex items-center gap-2 cursor-pointer hover:text-purple-400 transition-colors duration-300"
-                    onClick={toggleGallery}
-                  >
-                    <span className="text-purple-400">📷</span>
-                    <span className="text-sm text-gray-400">Internship Gallery</span>
-                  </div>
-                </div>
-
-                {showGallery && (
-                  <div className="grid grid-cols-2 gap-3 mt-4 transition-all duration-300">
-                    <img src="/internship-1.jpg" alt="Internship Photo 1" className="w-full h-24 object-cover rounded-lg border border-gray-700" />
-                    <img src="/internship-2.jpg" alt="Internship Photo 2" className="w-full h-24 object-cover rounded-lg border border-gray-700" />
-                  </div>
-                )}
+          <div className="space-y-2">
+            <div className="bg-white/5 rounded-lg p-2.5 border border-blue-500/10">
+              <div className="flex justify-between items-start mb-1">
+                <h4 className="font-semibold text-white text-xs">Intern</h4>
+                <span className="px-2 py-1 bg-blue-900/30 text-blue-300 text-xs font-medium rounded-full border border-blue-800">
+                  Feb 2023 – Aug 2023
+                </span>
               </div>
-            </div>
-          </div>
 
-          <div className="space-y-4">
-            <div className="bg-gray-800/40 rounded-xl p-4 border border-gray-700 hover:border-blue-400/40 transition-all duration-300">
-              <h4 className="font-bold text-white text-sm">MLOps for Generative AI</h4>
-              <p className="text-blue-400 text-xs font-semibold">Google Cloud Skills Boost</p>
-              <p className="text-gray-400 text-xs mt-2">Machine Learning Operations for Generative AI applications</p>
-            </div>
+              <p className="text-blue-400 font-medium text-xs mb-2">
+                People's Bank, Galle Main Street Branch
+              </p>
 
-            <div className="bg-gray-800/40 rounded-xl p-4 border border-gray-700 hover:border-purple-400/40 transition-all duration-300">
-              <h4 className="font-bold text-white text-sm">Introduction to Generative AI</h4>
-              <p className="text-purple-400 text-xs font-semibold">Google Cloud Skills Boost</p>
-              <p className="text-gray-400 text-xs mt-2">Fundamentals of Generative AI and its applications</p>
-            </div>
+              <ul className="space-y-1.5 text-gray-400 text-xs mb-3">
+                <li className="flex items-start">
+                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-1 mr-2 flex-shrink-0" />
+                  <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting.</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-1 mr-2 flex-shrink-0" />
+                  <span>Used banking software for accurate account processing, transaction recording, and customer support.</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-1 mr-2 flex-shrink-0" />
+                  <span>Supported customers with mobile banking features, online transactions, and digital payment solutions.</span>
+                </li>
+              </ul>
 
-            <div className="bg-gray-800/40 rounded-xl p-4 border border-gray-700 hover:border-blue-400/40 transition-all duration-300">
-              <h4 className="font-bold text-white text-sm">Microsoft Azure Fundamentals</h4>
-              <p className="text-blue-400 text-xs font-semibold">Microsoft</p>
-              <p className="text-gray-400 text-xs mt-2">Cloud computing fundamentals and Azure services</p>
+              <div className="flex flex-wrap gap-3 pt-2 border-t border-white/10">
+                <button
+                  onClick={toggleCertificate}
+                  className="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-600/80 text-white rounded-md font-medium hover:bg-purple-700 transition-colors duration-300 text-xs"
+                >
+                  <span>🔗</span>
+                  View Certificate
+                </button>
+
+                <div
+                  className="flex items-center gap-1 cursor-pointer hover:text-purple-400 transition-colors duration-300"
+                  onClick={toggleGallery}
+                >
+                  <span className="text-purple-400 text-xs">📷</span>
+                  <span className="text-xs text-gray-400">Gallery</span>
+                </div>
+              </div>
+
+              {/* Gallery Images */}
+              {showGallery && (
+                <div className="grid grid-cols-2 gap-2 mt-2 transition-all duration-300">
+                  <img src="/internship-1.jpg" alt="Internship Photo 1" className="w-full h-16 object-cover rounded border border-white/10" />
+                  <img src="/internship-2.jpg" alt="Internship Photo 2" className="w-full h-16 object-cover rounded border border-white/10" />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -772,42 +1004,42 @@ const TechStackCard = ({ tech, index, isVisible }) => {
   const colors = getColorClasses(tech.color);
 
   return (
-  <div
-    className={`w-[110px] h-[110px] bg-white/50 dark:bg-gray-800/40 rounded-xl p-2 border ${colors.border} hover:bg-white/80 dark:hover:bg-gray-800/60 transition-all duration-300 hover:shadow-md ${colors.glow} backdrop-blur-sm group flex flex-col items-center justify-center text-center`}
-    style={{
-      opacity: isVisible ? 1 : 0,
-      transform: isVisible ? "translateY(0) scale(1)" : "translateY(10px) scale(0.95)",
-      transition: "all 0.4s ease",
-      transitionDelay: `${index * 25}ms`
-    }}
-  >
-    {/* ICON */}
-    <div className={`w-10 h-10 rounded-lg ${colors.bg} ring-1 ring-white/10 flex items-center justify-center text-lg mb-1.5 group-hover:scale-110 transition shadow-sm`}>
-      {tech.icon}
+    <div
+      className={`w-[110px] h-[110px] bg-white/50 dark:bg-gray-800/40 rounded-xl p-2 border ${colors.border} hover:bg-white/80 dark:hover:bg-gray-800/60 transition-all duration-300 hover:shadow-md ${colors.glow} backdrop-blur-sm group flex flex-col items-center justify-center text-center`}
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0) scale(1)" : "translateY(10px) scale(0.95)",
+        transition: "all 0.4s ease",
+        transitionDelay: `${index * 25}ms`
+      }}
+    >
+      {/* ICON */}
+      <div className={`w-10 h-10 rounded-lg ${colors.bg} ring-1 ring-white/10 flex items-center justify-center text-lg mb-1.5 group-hover:scale-110 transition shadow-sm`}>
+        {tech.icon}
+      </div>
+
+      {/* NAME */}
+      <span className="text-gray-800 dark:text-white font-medium text-[10px] leading-tight">
+        {tech.name}
+      </span>
+
+      {/* % */}
+      <span className={`${colors.text} text-[10px] font-semibold`}>
+        {tech.level}%
+      </span>
+
+      {/* SHORT PROGRESS */}
+      <div className="w-1/2 h-[2px] bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mt-1">
+        <div
+          className={`h-full bg-gradient-to-r ${colors.progress} rounded-full transition-all duration-700`}
+          style={{
+            width: isVisible ? `${tech.level}%` : "0%",
+            transitionDelay: `${index * 25 + 150}ms`
+          }}
+        />
+      </div>
     </div>
-
-    {/* NAME */}
-    <span className="text-gray-800 dark:text-white font-medium text-[10px] leading-tight">
-      {tech.name}
-    </span>
-
-    {/* % */}
-    <span className={`${colors.text} text-[10px] font-semibold`}>
-      {tech.level}%
-    </span>
-
-    {/* SHORT PROGRESS */}
-    <div className="w-1/2 h-[2px] bg-gray-200 dark:bg-gray-700 rounded-full overflow-hidden mt-1">
-      <div
-        className={`h-full bg-gradient-to-r ${colors.progress} rounded-full transition-all duration-700`}
-        style={{
-          width: isVisible ? `${tech.level}%` : "0%",
-          transitionDelay: `${index * 25 + 150}ms`
-        }}
-      />
-    </div>
-  </div>
-);
+  );
 };
 
 const buildTechRows = (items, rowSizes) => {
@@ -994,8 +1226,8 @@ const getVideoSource = (url) => {
 // Project Card Component
 const ProjectCard = ({ project, onDemoClick }) => {
   return (
-    <div className="group h-full rounded-2xl border border-purple-500/20 bg-white/5 dark:bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/40">
-      <div className="relative aspect-video overflow-hidden rounded-t-2xl border-b border-purple-500/15">
+    <div className="group h-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-white/30">
+      <div className="relative aspect-video overflow-hidden rounded-t-2xl border-b border-white/10">
         <img
           src={project.screenshot}
           alt={project.title}
@@ -1016,7 +1248,7 @@ const ProjectCard = ({ project, onDemoClick }) => {
           {project.tags.map(tag => (
             <span
               key={tag}
-              className="rounded-full border border-purple-500/20 bg-purple-500/10 px-3 py-1 text-xs font-semibold text-purple-200"
+              className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-gray-300"
             >
               {tag}
             </span>
@@ -1083,25 +1315,26 @@ const Projects = () => {
     <section id="projects" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-500 to-blue-400 bg-clip-text text-transparent">
-            My Projects
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+            <span className="text-gray-800 dark:text-white">My </span>
+            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Projects</span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-600 dark:text-gray-400 text-base max-w-2xl mx-auto">
             A clean showcase of my recent work and builds
           </p>
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        <div className="flex flex-wrap justify-center gap-2.5 mb-10">
           {filters.map(filterName => (
             <button
               key={filterName}
               onClick={() => setFilter(filterName)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
+              className={`px-5 py-2 rounded-full font-semibold text-sm transition-all duration-300 ${
                 filter === filterName
-                  ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg scale-105'
-                  : 'bg-white/10 text-gray-200 hover:bg-white/20 hover:scale-105 border border-white/10'
+                  ? 'bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/30'
+                  : 'bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-300 dark:border-gray-700'
               }`}
             >
               {filterName}
@@ -1126,9 +1359,7 @@ const Projects = () => {
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
-              No projects found in this category.
-            </p>
+            <p className="text-gray-600 dark:text-gray-400 text-base">No projects found in this category.</p>
           </div>
         )}
       </div>
@@ -1155,9 +1386,6 @@ const Projects = () => {
             </div>
 
             <div className="relative">
-              <div className="absolute -left-20 top-10 h-40 w-40 rounded-full bg-cyan-500/20 blur-3xl" />
-              <div className="absolute -right-24 bottom-12 h-48 w-48 rounded-full bg-purple-500/20 blur-3xl" />
-
               <div className="relative aspect-video w-full bg-black/40">
                 {(() => {
                   const source = getVideoSource(activeProject.demo);
@@ -1230,11 +1458,12 @@ const Projects = () => {
   );
 };
 
-// Elegant Contact Form Component
+// Compact Contact Section
 const ContactForm = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [isSending, setIsSending] = useState(false);
 
   const validate = () => {
     const newErrors = {};
@@ -1248,15 +1477,53 @@ const ContactForm = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const sendEmail = async (formData) => {
+    try {
+      const response = await emailjs.send(
+        'service_your_service_id', // You'll need to get this from EmailJS
+        'template_your_template_id', // You'll need to create this in EmailJS
+        {
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          to_email: 'sandanichamoda450@gmail.com',
+          reply_to: formData.email
+        }
+      );
+      
+      if (response.status === 200) {
+        return { success: true };
+      } else {
+        return { success: false, error: 'Failed to send email' };
+      }
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      return { success: false, error: 'Email service unavailable' };
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
+    
     if (Object.keys(newErrors).length === 0) {
-      setSubmitted(true);
-      setTimeout(() => {
+      setIsSending(true);
+      
+      const result = await sendEmail(formData);
+      
+      if (result.success) {
+        setSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
-        setSubmitted(false);
-      }, 3000);
+        setErrors({});
+        
+        setTimeout(() => {
+          setSubmitted(false);
+          setIsSending(false);
+        }, 3000);
+      } else {
+        setErrors({ general: result.error });
+        setIsSending(false);
+      }
     } else {
       setErrors(newErrors);
     }
@@ -1264,121 +1531,124 @@ const ContactForm = () => {
 
   return (
     <section id="contact" className="py-20 px-4 bg-transparent">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            Let's Work Together
+        <div className="text-center mb-10">
+          <h2 className="text-4xl md:text-5xl font-bold mb-3">
+            <span className="text-gray-800 dark:text-white">Get In </span>
+            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Touch</span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? I'd love to hear from you!
+          <p className="text-gray-600 dark:text-gray-400 text-base max-w-2xl mx-auto">
+            Let's discuss your next project or collaboration opportunity
           </p>
         </div>
 
-        <div className="bg-white dark:bg-gray-800 rounded-3xl shadow-2xl p-8 md:p-12 border border-gray-100 dark:border-gray-700">
+        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 max-w-2xl mx-auto">
           {submitted ? (
-            <div className="text-center py-12">
-              <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-6 animate-bounce">
-                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="text-center py-8">
+              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">
-                Message Sent Successfully!
+              <h3 className="text-xl font-bold text-white mb-2">
+                Message Sent!
               </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Thank you for reaching out. I'll get back to you within 24 hours.
+              <p className="text-gray-300 text-sm">
+                I'll get back to you as soon as possible.
               </p>
             </div>
           ) : (
-            <form onSubmit={handleSubmit} className="space-y-6">
-              {/* Name and Email Row */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div>
-                  <label htmlFor="name" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                    Your Name *
-                  </label>
-                  <input
-                    type="text"
-                    id="name"
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all placeholder-gray-400"
-                    placeholder="John Doe"
-                  />
-                  {errors.name && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><span>⚠</span>{errors.name}</p>}
-                </div>
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Name */}
+              <div>
+                <label htmlFor="name" className="block text-sm font-medium text-gray-300 mb-2">
+                  Your Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={formData.name}
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  placeholder="Enter your name"
+                />
+                {errors.name && <p className="text-red-400 text-xs mt-1">{errors.name}</p>}
+              </div>
 
-                <div>
-                  <label htmlFor="email" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                    Your Email *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all placeholder-gray-400"
-                    placeholder="john@example.com"
-                  />
-                  {errors.email && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><span>⚠</span>{errors.email}</p>}
-                </div>
+              {/* Email */}
+              <div>
+                <label htmlFor="email" className="block text-sm font-medium text-gray-300 mb-2">
+                  Email Address
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  value={formData.email}
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  className="w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                  placeholder="your.email@example.com"
+                />
+                {errors.email && <p className="text-red-400 text-xs mt-1">{errors.email}</p>}
               </div>
 
               {/* Message */}
               <div>
-                <label htmlFor="message" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
-                  Your Message *
+                <label htmlFor="message" className="block text-sm font-medium text-gray-300 mb-2">
+                  Message
                 </label>
                 <textarea
                   id="message"
-                  rows="6"
+                  rows="4"
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all placeholder-gray-400 resize-none"
-                  placeholder="Tell me about your project or idea..."
+                  className="w-full px-4 py-3 rounded-lg border border-white/20 bg-white/10 text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all resize-none"
+                  placeholder="Tell me about your project..."
                 />
-                {errors.message && <p className="text-red-500 text-sm mt-1 flex items-center gap-1"><span>⚠</span>{errors.message}</p>}
+                {errors.message && <p className="text-red-400 text-xs mt-1">{errors.message}</p>}
               </div>
 
               {/* Submit Button */}
               <button
                 type="submit"
-                className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300 flex items-center justify-center gap-3 group"
+                disabled={isSending}
+                className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                <Mail className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-                Send Message
-                <ExternalLink className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {isSending ? (
+                  <>
+                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8 018 0 4-4h8v4H8z"></path>
+                    </svg>
+                    <span className="ml-2">Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Mail className="w-4 h-4" />
+                    Send Message
+                  </>
+                )}
               </button>
             </form>
           )}
         </div>
 
-        {/* Contact Info Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Mail className="w-6 h-6 text-purple-600 dark:text-purple-400" />
-            </div>
-            <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">Email</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">sandani@example.com</p>
-          </div>
+        {/* Quick Contact */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
+          <a href="mailto:sandanichamoda450@gmail.com" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+            <Mail className="w-5 h-5 text-purple-400 mx-auto mb-2" />
+            <p className="text-sm text-gray-300">Email</p>
+          </a>
 
-          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Linkedin className="w-6 h-6 text-blue-600 dark:text-blue-400" />
-            </div>
-            <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">LinkedIn</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">Connect with me</p>
-          </div>
+          <a href="https://www.linkedin.com/in/sandani-chamoda//in/sandani" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+            <Linkedin className="w-5 h-5 text-blue-400 mx-auto mb-2" />
+            <p className="text-sm text-gray-300">LinkedIn</p>
+          </a>
 
-          <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-100 dark:border-gray-700">
-            <div className="w-12 h-12 bg-pink-100 dark:bg-pink-900/30 rounded-full flex items-center justify-center mx-auto mb-3">
-              <Github className="w-6 h-6 text-pink-600 dark:text-pink-400" />
-            </div>
-            <h4 className="font-bold text-gray-800 dark:text-gray-200 mb-1">GitHub</h4>
-            <p className="text-sm text-gray-600 dark:text-gray-400">View my projects</p>
-          </div>
+          <a href="https://github.com/SandaniChamoda/sandani" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+            <Github className="w-5 h-5 text-pink-400 mx-auto mb-2" />
+            <p className="text-sm text-gray-300">GitHub</p>
+          </a>
         </div>
       </div>
     </section>
@@ -1405,7 +1675,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-3">
               <a 
-                href="https://github.com" 
+                href="https://github.com/SandaniChamoda" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-3 bg-gray-800 rounded-lg hover:bg-purple-600 transition-all duration-300 transform hover:-translate-y-1"
@@ -1414,7 +1684,7 @@ const Footer = () => {
                 <Github className="w-5 h-5" />
               </a>
               <a 
-                href="https://linkedin.com" 
+                href="https://www.linkedin.com/in/sandani-chamoda/" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="p-3 bg-gray-800 rounded-lg hover:bg-purple-600 transition-all duration-300 transform hover:-translate-y-1"
@@ -1423,7 +1693,7 @@ const Footer = () => {
                 <Linkedin className="w-5 h-5" />
               </a>
               <a 
-                href="mailto:sandani@example.com" 
+                href="mailto:sandanichamoda450@gmail.com" 
                 className="p-3 bg-gray-800 rounded-lg hover:bg-purple-600 transition-all duration-300 transform hover:-translate-y-1"
                 aria-label="Email"
               >
@@ -1452,6 +1722,12 @@ const Footer = () => {
                 <a href="#projects" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2 group">
                   <span className="w-0 group-hover:w-2 h-0.5 bg-purple-400 transition-all duration-300"></span>
                   Projects
+                </a>
+              </li>
+              <li>
+                <a href="#certifications" className="text-gray-400 hover:text-purple-400 transition-colors flex items-center gap-2 group">
+                  <span className="w-0 group-hover:w-2 h-0.5 bg-purple-400 transition-all duration-300"></span>
+                  Certifications
                 </a>
               </li>
               <li>
@@ -1657,14 +1933,15 @@ const App = () => {
       `}</style>
       <div className="app-content">
         <HomeBackgroundAnimation />
-        <AnimatedCursor enabled={cursorEnabled} />
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         
         <main>
           <HeroAbout />
           <EducationExperience />
           <Skills />
+          <WorkExperience />
           <Projects />
+          <ModernCertifications />
           <ContactForm />
         </main>
         
