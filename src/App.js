@@ -531,7 +531,7 @@ const EducationExperience = () => {
                 </div>
 
                 {/* Gallery Images */}
-                {showGallery &&S  (
+                {showGallery && (
                   <div className="grid grid-cols-2 gap-3 mt-4 transition-all duration-300">
                     <div className="relative group overflow-hidden rounded-lg border border-gray-200 dark:border-gray-700 hover:border-purple-300 dark:hover:border-purple-600 transition-all duration-300">
                       <img
