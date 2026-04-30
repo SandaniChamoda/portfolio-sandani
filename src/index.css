@@ -4,8 +4,11 @@
 
 /* Custom CSS Variables */
 :root {
-  --color-primary: #8b5cf6;
+  --color-primary: #ff8c00;
   --color-secondary: #3b82f6;
+  --color-accent: #06b6d4;
+  --bg-dark: #1a0f00;
+  --bg-darker: #0d0600;
   --transition-speed: 0.3s;
 }
 
@@ -17,25 +20,270 @@
 }
 
 html {
+  width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  overflow-x: hidden;
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(147, 51, 234, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(99, 102, 241, 0.12), transparent 55%),
+    radial-gradient(800px 700px at 30% 80%, rgba(139, 92, 246, 0.15), transparent 60%),
+    linear-gradient(135deg, #0a0616 0%, #0d0820 40%, #0b0a1e 70%, #070915 100%);
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+.dark body {
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(147, 51, 234, 0.14), transparent 60%),
+    radial-gradient(900px 600px at 85% 20%, rgba(99, 102, 241, 0.12), transparent 55%),
+    radial-gradient(800px 700px at 30% 80%, rgba(139, 92, 246, 0.15), transparent 60%),
+    linear-gradient(135deg, #0a0616 0%, #0d0820 40%, #0b0a1e 70%, #070915 100%);
+  background-attachment: fixed;
+  color: #ffffff;
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* Animated Galaxy Background */
+.app-root {
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+.starfield {
+  --star-color: rgba(255, 255, 255, 1);
+  --star-bright: rgba(255, 255, 255, 1);
+  --star-soft: rgba(255, 255, 255, 1);
+
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-color: #070915;
+  background-image:
+    radial-gradient(6px 6px at 160px 110px, var(--star-bright), transparent 50%),
+    radial-gradient(5px 5px at 60px 160px, var(--star-soft), transparent 55%),
+    radial-gradient(4px 4px at 220px 60px, rgba(231, 229, 233, 0.7), transparent 55%),
+    radial-gradient(3.5px 3.5px at 200px 140px, rgba(213, 223, 225, 0.7), transparent 60%),
+    radial-gradient(3px 3px at 140px 90px, var(--star-bright), transparent 55%),
+    radial-gradient(3px 3px at 40px 130px, var(--star-soft), transparent 50%),
+    radial-gradient(2.5px 2.5px at 12px 18px, rgba(255, 255, 255, 0.95), transparent 55%),
+    radial-gradient(2.5px 2.5px at 25px 15px, rgba(255, 255, 255, 0.9), transparent 55%),
+    radial-gradient(2px 2px at 60px 40px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 90px 60px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 120px 30px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 140px 120px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 200px 90px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 210px 170px, var(--star-color), transparent 55%),
+    radial-gradient(1.8px 1.8px at 30px 80px, rgba(147, 51, 234, 0.7), transparent 60%),
+    radial-gradient(1.8px 1.8px at 80px 20px, rgba(99, 102, 241, 0.7), transparent 60%),
+    radial-gradient(1.6px 1.6px at 180px 30px, rgba(59, 130, 246, 0.65), transparent 60%),
+    radial-gradient(1.6px 1.6px at 210px 120px, rgba(168, 85, 247, 0.65), transparent 60%),
+    radial-gradient(1.6px 1.6px at 110px 170px, rgba(236, 72, 153, 0.55), transparent 60%),
+    radial-gradient(1.4px 1.4px at 15px 140px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 70px 115px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 100px 150px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 150px 60px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.4px 1.4px at 170px 110px, rgba(255, 255, 255, 0.7), transparent 60%),
+    radial-gradient(1.2px 1.2px at 45px 35px, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.2px 1.2px at 95px 95px, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.2px 1.2px at 130px 15px, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1.2px 1.2px at 155px 165px, rgba(255, 255, 255, 0.6), transparent 60%),
+    radial-gradient(1px 1px at 10px 60px, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 35px 110px, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 75px 180px, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 125px 80px, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 185px 140px, rgba(255, 255, 255, 0.55), transparent 60%),
+    radial-gradient(1px 1px at 215px 15px, rgba(255, 255, 255, 0.55), transparent 60%);
+
+  background-size:
+    320px 320px,
+    280px 280px,
+    260px 260px,
+    240px 240px,
+    220px 220px,
+    200px 200px,
+    180px 180px,
+    160px 160px,
+    150px 150px,
+    140px 140px,
+    130px 130px,
+    120px 120px,
+    110px 110px,
+    100px 100px,
+    95px 95px,
+    90px 90px,
+    85px 85px,
+    80px 80px,
+    75px 75px,
+    70px 70px,
+    65px 65px,
+    60px 60px,
+    55px 55px,
+    50px 50px,
+    48px 48px,
+    46px 46px,
+    44px 44px,
+    42px 42px,
+    40px 40px,
+    38px 38px,
+    36px 36px,
+    34px 34px,
+    32px 32px,
+    30px 30px;
+
+  animation: star-drift 6s linear infinite;
+}
+
+.dark .starfield {
+  --star-color: rgba(135, 7, 7, 0.95);
+  --star-bright: rgb(76, 8, 139);
+  --star-soft: rgba(3, 81, 95, 0.85);
+
+  background-color: #010004;
+}
+
+.starfield::before,
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 18px 20px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 70px 110px, var(--star-color), transparent 55%),
+    radial-gradient(2px 2px at 130px 70px, var(--star-color), transparent 55%),
+    radial-gradient(1.8px 1.8px at 190px 35px, var(--star-color), transparent 55%),
+    radial-gradient(1.8px 1.8px at 215px 150px, var(--star-color), transparent 55%),
+    radial-gradient(1.8px 1.8px at 50px 190px, var(--star-color), transparent 55%),
+    radial-gradient(1.6px 1.6px at 110px 200px, var(--star-color), transparent 55%),
+    radial-gradient(1.6px 1.6px at 25px 85px, var(--star-color), transparent 55%),
+    radial-gradient(1.6px 1.6px at 95px 25px, var(--star-color), transparent 55%),
+    radial-gradient(1.4px 1.4px at 155px 120px, var(--star-color), transparent 55%),
+    radial-gradient(1.4px 1.4px at 175px 175px, var(--star-color), transparent 55%),
+    radial-gradient(1.4px 1.4px at 35px 140px, var(--star-color), transparent 55%),
+    radial-gradient(1.2px 1.2px at 10px 60px, var(--star-color), transparent 55%),
+    radial-gradient(1.2px 1.2px at 60px 10px, var(--star-color), transparent 55%),
+    radial-gradient(1.2px 1.2px at 120px 30px, var(--star-color), transparent 55%),
+    radial-gradient(1.2px 1.2px at 200px 90px, var(--star-color), transparent 55%),
+    radial-gradient(1px 1px at 80px 170px, var(--star-color), transparent 55%),
+    radial-gradient(1px 1px at 145px 55px, var(--star-color), transparent 55%),
+    radial-gradient(1px 1px at 205px 200px, var(--star-color), transparent 55%),
+    radial-gradient(1px 1px at 30px 35px, var(--star-color), transparent 55%);
+  background-size: 140px 140px;
+  opacity: 1;
+  will-change: background-position, opacity;
+  animation: star-drift 10s linear infinite, star-twinkle 10s ease-in-out infinite;
+}
+
+.starfield::after {
+  background-size: 320px 320px;
+  opacity: 0.9;
+  filter: blur(0.3px);
+  animation: star-drift 10s linear infinite, star-twinkle 10s ease-in-out infinite;
+}
+
+/* Animations */
+@keyframes star-drift {
+  0% {
+    background-position: 0 0;
+  }
+
+  30% {
+    background-position: -140px -80px;
+  }
+
+  60% {
+    background-position: -280px -160px;
+  }
+
+  100% {
+    background-position: -460px -260px;
+  }
+}
+
+
+@keyframes star-twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes vortex-rotate {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@keyframes vortex-pulse {
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(0.92);
+  }
+
+  50% {
+    opacity: 0.75;
+    transform: translate(-50%, -50%) scale(1.02);
+  }
 }
 
 /* Selection Styles */
 ::selection {
-  background-color: rgba(139, 92, 246, 0.3);
-  color: inherit;
+  background-color: rgba(147, 51, 234, 0.35);
+  color: #ffffff;
 }
 
 ::-moz-selection {
-  background-color: rgba(139, 92, 246, 0.3);
-  color: inherit;
+  background-color: rgba(147, 51, 234, 0.35);
+  color: #ffffff;
 }
 
 /* Scrollbar Styles */
@@ -44,23 +292,19 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
-
-.dark ::-webkit-scrollbar-track {
-  background: #1f2937;
+  background: #020617;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #8b5cf6 0%, #3b82f6 100%);
+  background: linear-gradient(180deg, #9333ea 0%, #3b82f6 50%, #06b6d4 100%);
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #7c3aed 0%, #2563eb 100%);
+  background: linear-gradient(180deg, #a855f7 0%, #2563eb 50%, #0891b2 100%);
 }
 
-/* Focus Visible Styles for Accessibility */
+/* Focus Visible Styles */
 *:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 2px;
@@ -70,31 +314,49 @@ body {
 /* Custom Utility Classes */
 @layer utilities {
   .text-gradient {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-purple-600 to-blue-600;
+    background: linear-gradient(
+      90deg,
+      #9333ea,
+      #a855f7,
+      #6366f1,
+      #3b82f6,
+      #06b6d4
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
-  
-  .glass-effect {
-    @apply bg-white/80 dark:bg-gray-800/80 backdrop-blur-md;
-  }
-  
-  .card-shadow {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-  }
-  
-  .dark .card-shadow {
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  }
-}
 
-/* Animation Classes */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(30px);
+  .glass-effect {
+    background: rgba(5, 8, 22, 0.68);
+    border: 1px solid rgba(147, 51, 234, 0.25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+
+  .card-shadow {
+    box-shadow:
+      0 18px 45px rgba(0, 0, 0, 0.45),
+      0 0 25px rgba(147, 51, 234, 0.16);
+  }
+
+  .neon-border {
+    border: 1px solid rgba(147, 51, 234, 0.45);
+    box-shadow:
+      0 0 18px rgba(147, 51, 234, 0.25),
+      inset 0 0 18px rgba(59, 130, 246, 0.08);
+  }
+
+  .neon-button {
+    background: linear-gradient(90deg, #9333ea, #3b82f6);
+    color: #ffffff;
+    box-shadow: 0 0 22px rgba(147, 51, 234, 0.45);
+    transition: all var(--transition-speed) ease;
+  }
+
+  .neon-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 32px rgba(59, 130, 246, 0.6);
   }
 }
 
@@ -102,36 +364,69 @@ body {
   animation: fadeInUp 0.6s ease-out forwards;
 }
 
-/* Loading Animation */
-@keyframes shimmer {
-  0% {
-    background-position: -1000px 0;
-  }
-  100% {
-    background-position: 1000px 0;
-  }
+.techstack-vortex {
+  position: absolute;
+  left: 50%;
+  top: 48%;
+  width: min(760px, 95vw);
+  height: min(760px, 95vw);
+  transform: translate(-50%, -50%);
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.22), transparent 55%),
+    conic-gradient(from 120deg, rgba(147, 51, 234, 0.2), rgba(59, 130, 246, 0.1), rgba(6, 182, 212, 0.15), rgba(147, 51, 234, 0.2));
+  filter: blur(0.4px) drop-shadow(0 0 35px rgba(124, 58, 237, 0.45));
+  opacity: 0.55;
+  animation: vortex-rotate 26s linear infinite;
 }
 
+.techstack-vortex::before,
+.techstack-vortex::after {
+  content: "";
+  position: absolute;
+  inset: 9%;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 102, 241, 0.25);
+  box-shadow:
+    0 0 30px rgba(59, 130, 246, 0.2),
+    inset 0 0 35px rgba(147, 51, 234, 0.2);
+  animation: vortex-pulse 6s ease-in-out infinite;
+}
+
+.techstack-vortex::after {
+  inset: 20%;
+  border-color: rgba(6, 182, 212, 0.3);
+  animation-delay: -2s;
+}
+
+/* Loading Animation */
 .loading-shimmer {
   animation: shimmer 2s infinite;
   background: linear-gradient(
     to right,
-    #f6f7f8 0%,
-    #edeef1 20%,
-    #f6f7f8 40%,
-    #f6f7f8 100%
+    #111827 0%,
+    #1f2937 20%,
+    #111827 40%,
+    #111827 100%
   );
   background-size: 1000px 100%;
 }
+
+
 
 /* Print Styles */
 @media print {
   .no-print {
     display: none !important;
   }
-  
+
   body {
     background: white;
     color: black;
   }
+
+  
 }
+
