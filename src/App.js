@@ -201,7 +201,7 @@ const projectsData = [
     tags: ["Full Stack", "Auth", "Quizzes", "Web"],
     screenshot: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/Internship-and-Job-preparation-platform.git",
-    demo: "/videos/HireSmart.mp4"
+    demo: "https://youtu.be/IsNKoyDltUg"
   },
   {
     id: 2,
@@ -210,7 +210,7 @@ const projectsData = [
     tags: ["Spring Boot", "React", "MySQL", "REST APIs"],
     screenshot: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49.git",
-    demo: "/videos/Vertexone.mp4"
+    demo: "https://youtu.be/Q4eDpgoZaKc"
   },
   {
     id: 3,
@@ -219,7 +219,7 @@ const projectsData = [
     tags: ["MERN", "React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     screenshot: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/RiyaGuru.git",
-    demo: "/videos/Riyaguru.mp4"
+    demo: "https://youtu.be/JuJEVTcUnkw"
   },
   {
     id: 4,
@@ -228,7 +228,7 @@ const projectsData = [
     tags: ["Kotlin", "Android Studio", "SharedPreferences", "Mobile"],
     screenshot: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/Wellnest-Habit-tracker-app.git",
-    demo: "/videos/WellNest.mp4"
+    demo: "https://youtube.com/shorts/R8BEB9kUKw8?feature=share"
   },
   {
     id: 5,
@@ -1226,7 +1226,7 @@ const getVideoSource = (url) => {
 };
 
 // Project Card Component
-const ProjectCard = ({ project, onDemoClick }) => {
+const ProjectCard = ({ project }) => {
   return (
     <div className="group h-full rounded-2xl border border-white/20 bg-white/5 backdrop-blur-sm shadow-[0_10px_30px_rgba(0,0,0,0.35)] transition-all duration-300 hover:-translate-y-1 hover:border-white/30">
       <div className="relative aspect-video overflow-hidden rounded-t-2xl border-b border-white/10">
@@ -1267,14 +1267,15 @@ const ProjectCard = ({ project, onDemoClick }) => {
             <Github className="h-4 w-4" />
             GitHub
           </a>
-          <button
-            type="button"
-            onClick={() => onDemoClick(project)}
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-gradient-to-r from-purple-500/30 via-blue-500/30 to-cyan-500/30 px-3 py-2 text-xs font-semibold text-white shadow-[0_0_18px_rgba(59,130,246,0.25)] hover:shadow-[0_0_28px_rgba(56,189,248,0.35)]"
           >
             <ExternalLink className="h-4 w-4" />
             Demo
-          </button>
+          </a>
         </div>
       </div>
     </div>
@@ -1284,34 +1285,11 @@ const ProjectCard = ({ project, onDemoClick }) => {
 // Projects Component
 const Projects = () => {
   const [filter, setFilter] = useState('All');
-  const [activeProject, setActiveProject] = useState(null);
-  const [isVideoOpen, setIsVideoOpen] = useState(false);
   const filters = ['All', 'Web', 'Mobile', 'UI/UX'];
 
   const filteredProjects = filter === 'All' 
     ? projectsData 
     : projectsData.filter(project => project.tags.includes(filter));
-
-  const handleOpenDemo = (project) => {
-    setActiveProject(project);
-    setIsVideoOpen(true);
-  };
-
-  const handleCloseDemo = () => {
-    setIsVideoOpen(false);
-    setActiveProject(null);
-  };
-
-  useEffect(() => {
-    if (!isVideoOpen) return;
-    const handleKey = (event) => {
-      if (event.key === 'Escape') {
-        handleCloseDemo();
-      }
-    };
-    window.addEventListener('keydown', handleKey);
-    return () => window.removeEventListener('keydown', handleKey);
-  }, [isVideoOpen]);
 
   return (
     <section id="projects" className="py-20 px-4 bg-transparent">
@@ -1354,7 +1332,7 @@ const Projects = () => {
                 animation: 'fadeInUp 0.6s ease-out forwards'
               }}
             >
-              <ProjectCard project={project} onDemoClick={handleOpenDemo} />
+              <ProjectCard project={project} />
             </div>
           ))}
         </div>
@@ -1365,97 +1343,6 @@ const Projects = () => {
           </div>
         )}
       </div>
-
-      {isVideoOpen && activeProject && (
-        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-[#070915]/80 px-4 py-8 backdrop-blur-lg" onClick={handleCloseDemo}>
-          <div
-            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-cyan-400/20 bg-gradient-to-br from-[#0b0f2b]/90 via-[#090c1f]/90 to-[#0a0b18]/90 shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
-            onClick={(event) => event.stopPropagation()}
-          >
-            <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200/70">Project Demo</p>
-                <h3 className="text-2xl font-semibold text-white">{activeProject.title}</h3>
-              </div>
-              <button
-                type="button"
-                onClick={handleCloseDemo}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-white hover:bg-white/15"
-                aria-label="Close demo"
-              >
-                <X className="h-5 w-5" />
-              </button>
-            </div>
-
-            <div className="relative">
-              <div className="relative aspect-video w-full bg-black/40">
-                {(() => {
-                  const source = getVideoSource(activeProject.demo);
-                  if (source.type === 'youtube' || source.type === 'vimeo') {
-                    return (
-                      <iframe
-                        className="h-full w-full"
-                        src={source.src}
-                        title={`${activeProject.title} demo`}
-                        allow="autoplay; fullscreen; picture-in-picture"
-                        allowFullScreen
-                      />
-                    );
-                  }
-
-                  if (source.type === 'local') {
-                    return (
-                      <video
-                        className="h-full w-full"
-                        src={source.src}
-                        controls
-                        autoPlay
-                      />
-                    );
-                  }
-
-                  return (
-                    <div className="flex h-full items-center justify-center px-6 text-center">
-                      <div className="space-y-3">
-                        <p className="text-lg font-semibold text-white">Demo link is not available.</p>
-                        <p className="text-sm text-gray-300">Add a video URL or local video path for this project.</p>
-                      </div>
-                    </div>
-                  );
-                })()}
-              </div>
-            </div>
-
-            <div className="flex flex-wrap items-center justify-between gap-4 border-t border-white/10 px-6 py-4">
-              <div className="text-sm text-gray-300">
-                Tip: press Esc to close.
-              </div>
-              <div className="flex gap-3">
-                <a
-                  href={activeProject.repo}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/10 px-4 py-2 text-xs font-semibold text-white hover:bg-white/20"
-                >
-                  <Github className="h-4 w-4" />
-                  View Code
-                </a>
-                {activeProject.demo && (
-                  <a
-                    href={activeProject.demo}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-500/10 px-4 py-2 text-xs font-semibold text-cyan-100 hover:bg-cyan-500/20"
-                  >
-                    <ExternalLink className="h-4 w-4" />
-                    Open Demo Link
-                  </a>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
     </section>
   );
 };
