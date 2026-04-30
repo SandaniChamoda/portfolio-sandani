@@ -441,7 +441,7 @@ const HeroAbout = () => {
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden bg-transparent">
 
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto -mt-32">
+       <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-6"> 
           
           {/* Left Side - Content */}
           <div className="space-y-8 lg:pr-8 pt-20 md:pt-24 lg:pt-32">
@@ -452,7 +452,7 @@ const HeroAbout = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold leading-tight">
+           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight whitespace-nowrap">
               <span className="text-white">Hi, I am </span>
               <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sandani</span>
             </h1>
