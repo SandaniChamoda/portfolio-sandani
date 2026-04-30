@@ -463,7 +463,9 @@ const HeroAbout = () => {
 
             {/* CTA Button */}
            <a
-  href="#projects"
+  href="/Sandani Chamoda CV.pdf"
+  download="Sandani Chamoda CV.pdf"
+  target="_blank"
   className="
   inline-block px-9 py-2 rounded-xl font-semibold text-white
   bg-gradient-to-r from-purple-500/10 via-purple-500/20 to-purple-500/10
