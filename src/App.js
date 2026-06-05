@@ -166,7 +166,7 @@ const projectsData = [
     description: "A full-stack platform helping students prepare for internships with secure authentication, profile management, and role-based quizzes. Built with a modern, scalable tech stack.",
     tags: ["Full Stack", "Auth", "Quizzes", "Web"],
     screenshot: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/Internship-and-Job-preparation-platform.git",
+    repo: "https://github.com/SandaniChamoda/Internship-and-Job-preparation-platform",
     demo: "https://youtu.be/IsNKoyDltUg"
   },
   {
@@ -175,7 +175,7 @@ const projectsData = [
     description: "Developed the ticketing module for reporting, tracking, and resolving campus incidents with status workflows and role-based access.",
     tags: ["Spring Boot", "React", "MySQL", "REST APIs"],
     screenshot: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49",
     demo: "https://youtu.be/Q4eDpgoZaKc"
   },
   {
@@ -184,7 +184,7 @@ const projectsData = [
     description: "A MERN platform for managing driving school operations, including booking and progress tracking. Implemented secure payments with JWT authentication and role-based access control.",
     tags: ["MERN", "React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     screenshot: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/RiyaGuru.git",
+    repo: "https://github.com/SandaniChamoda/RiyaGuru.git",
     demo: "https://youtu.be/JuJEVTcUnkw"
   },
   {
@@ -193,7 +193,7 @@ const projectsData = [
     description: "An offline Android wellness app for habit tracking, mood journaling, and hydration reminders with shake-sensor integration and home-screen widget.",
     tags: ["Kotlin", "Android Studio", "SharedPreferences", "Mobile"],
     screenshot: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/Wellnest-Habit-tracker-app.git",
+    repo: "https://github.com/SandaniChamoda/Wellnest-Habit-tracker-app.git",
     demo: "https://youtube.com/shorts/R8BEB9kUKw8?feature=share"
   },
   {
@@ -496,7 +496,7 @@ const HeroAbout = () => {
 
             {/* Bio */}
             <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
-              Building scalable web applications with real-world impact. Experienced in full-stack development, working across modern frontend and backend technologies to deliver clean, user-focused solutions. </p>
+              3rd Year Information Technology Undergraduate at SLIIT with a passion for Software Engineering, Full-Stack Development, Data Analytics, and UI/UX Design. I enjoy building practical solutions and continuously learning modern technologies. </p>
 
             {/* CTA Button */}
            <a
@@ -1536,12 +1536,12 @@ const ContactForm = () => {
             <p className="text-sm text-gray-300">Email</p>
           </a>
 
-          <a href="https://www.linkedin.com/in/sandani-chamoda//in/sandani" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+          <a href="https://www.linkedin.com/in/sandani-chamoda/" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
             <Linkedin className="w-5 h-5 text-blue-400 mx-auto mb-2" />
             <p className="text-sm text-gray-300">LinkedIn</p>
           </a>
 
-          <a href="https://github.com/SandaniChamoda/sandani" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+          <a href="https://github.com/SandaniChamoda/" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
             <Github className="w-5 h-5 text-pink-400 mx-auto mb-2" />
             <p className="text-sm text-gray-300">GitHub</p>
           </a>
