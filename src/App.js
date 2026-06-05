@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Camera, Code, Database, Palette, Terminal, Download, Mail, Github, Linkedin, ExternalLink, Menu, X, Sun, Moon, ChevronUp, Filter, MapPin, Briefcase, GraduationCap } from 'lucide-react';
+import './App.css';
 
 // Custom hook for localStorage
 const useLocalStorage = (key, initialValue) => {
@@ -60,42 +61,7 @@ const CODE_SYMBOLS = [
   { sym: "hook", x: 6, y: 35, size: 9, delay: 4.1, dur: 22 }
 ];
 
-const HomeBackgroundAnimation = () => {
-  return (
-    <>
-      <div className="pointer-events-none fixed inset-0 overflow-hidden" aria-hidden>
-        {CODE_SYMBOLS.map((s, i) => (
-          <span
-            key={i}
-            className="absolute select-none font-medium text-cyan-200/[0.12] will-change-transform [font-family:'Fira_Code','Cascadia_Code','JetBrains_Mono',monospace] animate-[float-code_linear_infinite] sm:text-cyan-200/[0.18]"
-            style={{
-              left: `${s.x}%`,
-              bottom: `-${s.size + 2}%`,
-              fontSize: `${Math.max(s.size - 2, 8)}px`,
-              animationDuration: `${s.dur}s`,
-              animationDelay: `${s.delay}s`,
-            }}
-          >
-            {s.sym}
-          </span>
-        ))}
-
-        <div
-          className="absolute h-[320px] w-[320px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(6,182,212,0.05)_0%,transparent_70%)] sm:h-[440px] sm:w-[440px] md:h-[600px] md:w-[600px]"
-          style={{ top: "10%", left: "60%" }}
-        />
-        <div
-          className="absolute h-[260px] w-[260px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.04)_0%,transparent_70%)] sm:h-[360px] sm:w-[360px] md:h-[500px] md:w-[500px]"
-          style={{ top: "70%", left: "20%" }}
-        />
-        <div
-          className="absolute h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[radial-gradient(circle,rgba(14,165,233,0.035)_0%,transparent_72%)] sm:h-[320px] sm:w-[320px] md:h-[420px] md:w-[420px]"
-          style={{ top: "35%", left: "85%" }}
-        />
-      </div>
-    </>
-  );
-};
+const HomeBackgroundAnimation = () => null;
 
 // Logo Component
 const Logo = ({ className = "w-10 h-10" }) => (
@@ -349,7 +315,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   ];
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/40 backdrop-blur-lg' : 'bg-transparent'}`}>
+    <nav className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0e0420]/95 backdrop-blur-sm border-b border-[#2C1250]/20' : 'nav-contrast'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Left - Logo & Branding */}
@@ -361,7 +327,7 @@ const Navbar = ({ theme, toggleTheme }) => {
           </div>
 
           {/* Center - Navigation Links (Desktop) */}
-          <div className="hidden md:flex items-center justify-center px-8 py-2 rounded-full border border-purple-500/50 bg-gradient-to-r from-purple-900/20 to-blue-900/20 backdrop-blur-md">
+          <div className="hidden md:flex items-center justify-center px-8 py-2 rounded-full border border-[#2C1250]/50 bg-[#120421] text-gray-200">
             {navLinks.map(link => (
               <a
                 key={link.name}
@@ -416,7 +382,7 @@ const Navbar = ({ theme, toggleTheme }) => {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-black/40 backdrop-blur-lg border-t border-purple-500/30">
+        <div className="md:hidden bg-[#0e0420]/95 backdrop-blur-sm border-t border-[#2C1250]/20">
           <div className="px-2 pt-2 pb-3 space-y-1">
             {navLinks.map(link => (
               <a
@@ -437,6 +403,77 @@ const Navbar = ({ theme, toggleTheme }) => {
 
 //Hero about
 const HeroAbout = () => {
+  const orbitOuterItems = [
+    {
+      key: 'react',
+      content: (
+        <svg className="w-12 h-12 text-blue-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="3" />
+          <circle cx="12" cy="5" r="2" />
+          <circle cx="19" cy="12" r="2" />
+          <circle cx="12" cy="19" r="2" />
+          <circle cx="5" cy="12" r="2" />
+          <path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" strokeWidth="1" />
+        </svg>
+      ),
+    },
+    { key: 'js', content: <span className="text-2xl font-bold text-yellow-400">JS</span> },
+    { key: 'ts', content: <span className="text-2xl font-bold text-blue-500">TS</span> },
+    { key: 'aws', content: <span className="text-lg font-bold text-orange-400">AWS</span> },
+    { key: 'github', content: <Github className="w-12 h-12 text-gray-300" aria-hidden="true" /> },
+    { key: 'node', content: <Terminal className="w-12 h-12 text-green-400" aria-hidden="true" /> },
+    { key: 'api', content: <Code className="w-12 h-12 text-purple-300" aria-hidden="true" /> },
+    { key: 'db', content: <Database className="w-12 h-12 text-blue-300" aria-hidden="true" /> },
+    { key: 'uiux', content: <Palette className="w-12 h-12 text-pink-300" aria-hidden="true" /> },
+    { key: 'tailwind', content: <span className="text-xl font-bold text-cyan-300">TW</span> },
+    { key: 'vite', content: <span className="text-xl font-bold text-yellow-300">Vite</span> },
+    {
+      key: 'firebase',
+      content: (
+        <svg className="w-12 h-12 text-orange-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M3 13l8-15 8 15-4 11H7z" />
+        </svg>
+      ),
+    },
+  ];
+
+  const orbitInnerItems = [
+    {
+      key: 'mongodb',
+      content: (
+        <svg className="w-12 h-12 text-green-500" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M12 2c0 0-6 3-6 9c0 3 2 5 6 5s6-2 6-5c0-6-6-9-6-9z"
+            opacity="0.5"
+          />
+          <circle cx="12" cy="12" r="3" fill="currentColor" />
+        </svg>
+      ),
+    },
+    { key: 'git', content: <span className="text-xl font-bold text-orange-300">Git</span> },
+    { key: 'docker', content: <span className="text-xl font-bold text-sky-300">Docker</span> },
+  ];
+
+  const renderOrbit = (items, radius) => {
+    const angleOffset = -Math.PI / 2;
+
+    return items.map((item, index) => {
+      const angle = (2 * Math.PI * index) / items.length + angleOffset;
+      const x = Math.cos(angle) * radius;
+      const y = Math.sin(angle) * radius;
+
+      return (
+        <div
+          key={item.key}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm"
+          style={{ transform: `translate(-50%, -50%) translate(${x}px, ${y}px)` }}
+        >
+          {item.content}
+        </div>
+      );
+    });
+  };
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center pt-20 pb-16 px-4 overflow-hidden bg-transparent">
 
@@ -444,7 +481,7 @@ const HeroAbout = () => {
        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-6"> 
           
           {/* Left Side - Content */}
-          <div className="space-y-8 lg:pr-8 pt-20 md:pt-24 lg:pt-32">
+          <div className="space-y-8 lg:pr-8 pt-10 md:pt-14 lg:pt-18 hero-left-seq">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-5 py-0.2 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-full w-fit">
               <span className="text-lg">💎</span>
@@ -483,13 +520,13 @@ const HeroAbout = () => {
           </div>
 
           {/* Right Side - Tech Stack Icons */}
-          <div className="relative h-96 flex items-center justify-center">
+          <div className="relative h-[24rem] sm:h-[26rem] md:h-[30rem] flex items-center justify-center md:translate-y-4 lg:translate-y-6 md:translate-x-4 lg:translate-x-8">
             {/* Center circular glow */}
-            <div className="absolute w-64 h-64 bg-purple-500/20 rounded-full blur-3xl"></div>
+            <div className="absolute w-64 h-64 md:w-72 md:h-72 bg-purple-500/20 rounded-full blur-3xl"></div>
 
             {/* Circular grid */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <div className="relative w-96 h-96">
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96">
                 <div className="absolute inset-0 rounded-full border border-purple-500/20"></div>
                 <div className="absolute inset-[12%] rounded-full border border-purple-500/15"></div>
                 <div className="absolute inset-[26%] rounded-full border border-purple-500/10"></div>
@@ -501,48 +538,9 @@ const HeroAbout = () => {
             </div>
             
             {/* Tech Icons in circular pattern */}
-            <div className="relative w-72 h-72">
-              {/* React */}
-              <div className="absolute top-0 left-1/2 transform -translate-x-1/2 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <svg className="w-12 h-12 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="3"/><circle cx="12" cy="5" r="2"/><circle cx="19" cy="12" r="2"/><circle cx="12" cy="19" r="2"/><circle cx="5" cy="12" r="2"/><path d="M12 5v14M5 12h14" stroke="currentColor" fill="none" strokeWidth="1"/>
-                </svg>
-              </div>
-
-              {/* JavaScript */}
-              <div className="absolute top-12 right-8 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <span className="text-2xl font-bold text-yellow-400">JS</span>
-              </div>
-
-              {/* Firebase */}
-              <div className="absolute bottom-12 right-8 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <svg className="w-12 h-12 text-orange-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M3 13l8-15 8 15-4 11H7z"/>
-                </svg>
-              </div>
-
-              {/* TypeScript */}
-              <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <span className="text-2xl font-bold text-blue-500">TS</span>
-              </div>
-
-              {/* MongoDB */}
-              <div className="absolute bottom-12 left-8 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <svg className="w-12 h-12 text-green-500" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2c0 0-6 3-6 9c0 3 2 5 6 5s6-2 6-5c0-6-6-9-6-9z" opacity="0.5"/><circle cx="12" cy="12" r="3" fill="currentColor"/>
-                </svg>
-              </div>
-
-              {/* AWS */}
-              <div className="absolute top-12 left-8 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <span className="text-lg font-bold text-orange-400">AWS</span>
-              </div>
-
-              {/* GitHub */}
-              <div className="absolute top-1/2 right-0 transform -translate-y-1/2 p-4 bg-gray-800/50 rounded-2xl border border-purple-500/30 backdrop-blur-sm">
-                <Github className="w-12 h-12 text-gray-300" />
-              </div>
-
+            <div className="relative w-72 h-72 sm:w-80 sm:h-80 md:w-96 md:h-96">
+              {renderOrbit(orbitOuterItems, 170)}
+              {renderOrbit(orbitInnerItems, 108)}
             </div>
           </div>
         </div>
@@ -859,12 +857,18 @@ const WorkExperience = () => {
   const toggleCertificate = () => setShowCertificate(!showCertificate);
 
   return (
-    <section id="experience" className="relative py-20 px-4 bg-transparent overflow-hidden">
+    <section id="experience" className="relative isolate overflow-hidden py-20 px-4 bg-transparent">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
+        <div className="absolute -left-24 top-8 h-72 w-72 rounded-full bg-purple-600/25 blur-3xl" />
+        <div className="absolute right-0 top-24 h-80 w-80 rounded-full bg-fuchsia-500/15 blur-3xl" />
+        <div className="absolute inset-x-1/4 top-0 h-px bg-gradient-to-r from-transparent via-purple-400/60 to-transparent" />
+      </div>
+
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-12">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">
             <span className="text-white">Work </span>
-            <span className="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-fuchsia-400 via-purple-400 to-indigo-300 bg-clip-text text-transparent">
               Experience
             </span>
           </h2>
@@ -873,36 +877,39 @@ const WorkExperience = () => {
           </p>
         </div>
 
-        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10 mx-auto max-w-5xl">
+        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-purple-500/20 bg-[linear-gradient(180deg,rgba(19,9,44,0.96)_0%,rgba(8,4,20,0.95)_100%)] p-5 shadow-[0_24px_90px_rgba(118,55,193,0.28)] backdrop-blur-xl">
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_30%)]" aria-hidden="true" />
+
           <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
-            <Briefcase className="h-4 w-4 text-blue-400" />
+            <Briefcase className="h-4 w-4 text-purple-300" />
             Work Experience
           </h3>
 
           <div className="space-y-2">
-            <div className="bg-white/5 rounded-lg p-2.5 border border-blue-500/10">
+            <div className="relative overflow-hidden rounded-[22px] border border-purple-500/18 bg-white/[0.045] p-4 shadow-[0_0_0_1px_rgba(168,85,247,0.04),0_10px_28px_rgba(0,0,0,0.22)]">
+              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-400/70 to-transparent" aria-hidden="true" />
               <div className="flex justify-between items-start mb-1">
                 <h4 className="font-semibold text-white text-xs">Intern</h4>
-                <span className="px-2 py-1 bg-blue-900/30 text-blue-300 text-xs font-medium rounded-full border border-blue-800">
+                <span className="px-2 py-1 bg-purple-900/35 text-purple-200 text-xs font-medium rounded-full border border-purple-500/30 shadow-[0_0_18px_rgba(168,85,247,0.12)]">
                   Feb 2023 – Aug 2023
                 </span>
               </div>
 
-              <p className="text-blue-400 font-medium text-xs mb-2">
+              <p className="text-purple-300 font-medium text-xs mb-2">
                 People's Bank, Galle Main Street Branch
               </p>
 
               <ul className="space-y-1.5 text-gray-400 text-xs mb-3">
                 <li className="flex items-start">
-                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-1 mr-2 flex-shrink-0" />
+                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
                   <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting.</span>
                 </li>
                 <li className="flex items-start">
-                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-1 mr-2 flex-shrink-0" />
+                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
                   <span>Used banking software for accurate account processing, transaction recording, and customer support.</span>
                 </li>
                 <li className="flex items-start">
-                  <div className="w-1 h-1 bg-blue-500 rounded-full mt-1 mr-2 flex-shrink-0" />
+                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
                   <span>Supported customers with mobile banking features, online transactions, and digital payment solutions.</span>
                 </li>
               </ul>
@@ -910,17 +917,17 @@ const WorkExperience = () => {
               <div className="flex flex-wrap gap-3 pt-2 border-t border-white/10">
                 <button
                   onClick={toggleCertificate}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 bg-purple-600/80 text-white rounded-md font-medium hover:bg-purple-700 transition-colors duration-300 text-xs"
+                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-400/30 bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 text-white text-xs font-medium shadow-[0_0_18px_rgba(168,85,247,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(168,85,247,0.45)]"
                 >
                   <span>🔗</span>
                   View Certificate
                 </button>
 
                 <div
-                  className="flex items-center gap-1 cursor-pointer hover:text-purple-400 transition-colors duration-300"
+                  className="flex items-center gap-1 cursor-pointer text-gray-300 transition-colors duration-300 hover:text-purple-300"
                   onClick={toggleGallery}
                 >
-                  <span className="text-purple-400 text-xs">📷</span>
+                  <span className="text-purple-300 text-xs">📷</span>
                   <span className="text-xs text-gray-400">Gallery</span>
                 </div>
               </div>
@@ -928,8 +935,8 @@ const WorkExperience = () => {
               {/* Gallery Images */}
               {showGallery && (
                 <div className="grid grid-cols-2 gap-2 mt-2 transition-all duration-300">
-                  <img src="/internship-1.jpg" alt="Internship Photo 1" className="w-full h-16 object-cover rounded border border-white/10" />
-                  <img src="/internship-2.jpg" alt="Internship Photo 2" className="w-full h-16 object-cover rounded border border-white/10" />
+                  <img src="/internship-1.jpg" alt="Internship Photo 1" className="w-full h-16 object-cover rounded border border-purple-500/15" />
+                  <img src="/internship-2.jpg" alt="Internship Photo 2" className="w-full h-16 object-cover rounded border border-purple-500/15" />
                 </div>
               )}
             </div>
@@ -993,12 +1000,12 @@ const techStackData = {
 const TechStackCard = ({ tech, index, isVisible }) => {
   const getColorClasses = (color) => {
     const colors = {
-      cyan: { border: "border-cyan-500/30", bg: "bg-cyan-500/10", text: "text-cyan-600 dark:text-cyan-400", progress: "from-cyan-500 to-cyan-600", glow: "hover:shadow-cyan-500/20" },
-      blue: { border: "border-blue-500/30", bg: "bg-blue-500/10", text: "text-blue-600 dark:text-blue-400", progress: "from-blue-500 to-blue-600", glow: "hover:shadow-blue-500/20" },
-      purple: { border: "border-purple-500/30", bg: "bg-purple-500/10", text: "text-purple-600 dark:text-purple-400", progress: "from-purple-500 to-purple-600", glow: "hover:shadow-purple-500/20" },
-      green: { border: "border-green-500/30", bg: "bg-green-500/10", text: "text-green-600 dark:text-green-400", progress: "from-green-500 to-green-600", glow: "hover:shadow-green-500/20" },
-      orange: { border: "border-orange-500/30", bg: "bg-orange-500/10", text: "text-orange-600 dark:text-orange-400", progress: "from-orange-500 to-orange-600", glow: "hover:shadow-orange-500/20" },
-      white: { border: "border-gray-500/30", bg: "bg-gray-500/10", text: "text-gray-600 dark:text-gray-300", progress: "from-gray-400 to-gray-500", glow: "hover:shadow-gray-500/20" }
+      cyan: { border: "border-cyan-500/30", bg: "bg-cyan-500/12", text: "text-cyan-600 dark:text-cyan-400", progress: "from-cyan-500 to-cyan-600", glow: "hover:shadow-cyan-500/20" },
+      blue: { border: "border-blue-500/30", bg: "bg-blue-500/11", text: "text-blue-600 dark:text-blue-400", progress: "from-blue-500 to-blue-600", glow: "hover:shadow-blue-500/20" },
+      purple: { border: "border-purple-500/30", bg: "bg-purple-500/11", text: "text-purple-600 dark:text-purple-400", progress: "from-purple-500 to-purple-600", glow: "hover:shadow-purple-500/20" },
+      green: { border: "border-green-500/30", bg: "bg-green-500/11", text: "text-green-600 dark:text-green-400", progress: "from-green-500 to-green-600", glow: "hover:shadow-green-500/20" },
+      orange: { border: "border-orange-500/30", bg: "bg-orange-500/11", text: "text-orange-600 dark:text-orange-400", progress: "from-orange-500 to-orange-600", glow: "hover:shadow-orange-500/20" },
+      white: { border: "border-gray-500/30", bg: "bg-gray-500/11", text: "text-gray-600 dark:text-gray-300", progress: "from-gray-400 to-gray-500", glow: "hover:shadow-gray-500/20" }
     };
     return colors[color] || colors.blue;
   };
@@ -1718,7 +1725,6 @@ const App = () => {
 
   return (
     <div className="app-root min-h-screen text-gray-900 dark:text-gray-100 transition-colors duration-300">
-      <div className="starfield" aria-hidden="true" />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
         
@@ -1821,7 +1827,6 @@ const App = () => {
         }
       `}</style>
       <div className="app-content">
-        <HomeBackgroundAnimation />
         <Navbar theme={theme} toggleTheme={toggleTheme} />
         
         <main>
