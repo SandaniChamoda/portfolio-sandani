@@ -167,7 +167,7 @@ const projectsData = [
     tags: ["Full Stack", "Auth", "Quizzes", "Web"],
     screenshot: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/Internship-and-Job-preparation-platform",
-    demo: "https://youtu.be/IsNKoyDltUg"
+    demo: "https://youtu.be/93NH3bHEFdU"
   },
   {
     id: 2,
@@ -203,7 +203,7 @@ const projectsData = [
     tags: ["Java", "MySQL", "Bootstrap", "Web"],
     screenshot: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/hotel-customer-care.git",
-    demo: "https://youtu.be/hotel-customer-care-demo"
+    demo: "https://youtu.be/VTrvZoPHhzg"
   },
   {
     id: 6,
