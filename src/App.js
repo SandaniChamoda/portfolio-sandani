@@ -1,6 +1,73 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Camera, Code, Database, Palette, Terminal, Download, Mail, Github, Linkedin, ExternalLink, Menu, X, Sun, Moon, ChevronUp, Filter, MapPin, Briefcase, GraduationCap } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import './App.css';
+
+// Animation variants for smooth, premium scroll animations
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.5, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+// Reduced motion variants for accessibility
+const reducedMotionVariants = {
+  hidden: { opacity: 1 },
+  visible: { opacity: 1 }
+};
 
 // Custom hook for localStorage
 const useLocalStorage = (key, initialValue) => {
@@ -403,6 +470,10 @@ const Navbar = ({ theme, toggleTheme }) => {
 
 //Hero about
 const HeroAbout = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const heroVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const itemVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
+
   const orbitOuterItems = [
     {
       key: 'react',
@@ -481,43 +552,63 @@ const HeroAbout = () => {
        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-6"> 
           
           {/* Left Side - Content */}
-          <div className="space-y-8 lg:pr-8 pt-10 md:pt-14 lg:pt-18 hero-left-seq">
+          <motion.div
+            className="space-y-8 lg:pr-8 pt-10 md:pt-14 lg:pt-18 hero-left-seq"
+            initial="hidden"
+            animate="visible"
+            variants={heroVariants}
+          >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-0.2 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-full w-fit">
-              <span className="text-lg">💎</span>
-              <span className="text-sm font-semibold bg-gradient-to-r from-purple-400 to-blue-100 bg-clip-text text-transparent">Fullstack Developer </span>
-            </div>
+            <motion.div
+              variants={itemVariants}
+              custom={0}
+            >
+              <div className="inline-flex items-center gap-2 px-5 py-0.2 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-full w-fit">
+                <span className="text-lg">💎</span>
+                <span className="text-sm font-semibold bg-gradient-to-r from-purple-400 to-blue-100 bg-clip-text text-transparent">Fullstack Developer </span>
+              </div>
+            </motion.div>
 
             {/* Main Heading */}
-           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight whitespace-nowrap">
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight whitespace-nowrap"
+              variants={itemVariants}
+              custom={0.1}
+            >
               <span className="text-white">Hi, I am </span>
               <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sandani</span>
-            </h1>
+            </motion.h1>
 
             {/* Bio */}
-            <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
-              3rd Year Information Technology Undergraduate at SLIIT with a passion for Software Engineering, Full-Stack Development, Data Analytics, and UI/UX Design. I enjoy building practical solutions and continuously learning modern technologies. </p>
+            <motion.p
+              className="text-lg text-gray-400 leading-relaxed max-w-lg"
+              variants={itemVariants}
+              custom={0.2}
+            >
+              3rd Year Information Technology Undergraduate at SLIIT with a passion for Software Engineering, Full-Stack Development, Data Analytics, and UI/UX Design. I enjoy building practical solutions and continuously learning modern technologies. </motion.p>
 
             {/* CTA Button */}
-           <a
-  href="/Sandani Chamoda CV.pdf"
-  download="Sandani Chamoda CV.pdf"
-  target="_blank"
-  className="
-  inline-block px-9 py-2 rounded-xl font-semibold text-white
-  bg-gradient-to-r from-purple-500/10 via-purple-500/20 to-purple-500/10
-  backdrop-blur-lg
-  border border-purple-400/30
-  shadow-[0_0_20px_rgba(139,92,246,0.25)]
-  hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]
-  hover:border-purple-400/50
-  hover:scale-105
-  transition-all duration-300
-  "
->
-  Download Resume
-</a>
-          </div>
+            <motion.div variants={itemVariants} custom={0.3}>
+              <a
+                href="/Sandani Chamoda CV.pdf"
+                download="Sandani Chamoda CV.pdf"
+                target="_blank"
+                className="
+                inline-block px-9 py-2 rounded-xl font-semibold text-white
+                bg-gradient-to-r from-purple-500/10 via-purple-500/20 to-purple-500/10
+                backdrop-blur-lg
+                border border-purple-400/30
+                shadow-[0_0_20px_rgba(139,92,246,0.25)]
+                hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]
+                hover:border-purple-400/50
+                hover:scale-105
+                transition-all duration-300
+                "
+              >
+                Download Resume
+              </a>
+            </motion.div>
+          </motion.div>
 
           {/* Right Side - Tech Stack Icons */}
           <div className="relative h-[24rem] sm:h-[26rem] md:h-[30rem] flex items-center justify-center md:translate-y-4 lg:translate-y-6 md:translate-x-4 lg:translate-x-8">
@@ -631,18 +722,18 @@ const CertificateCard = ({ certificate, index }) => {
         animation: "fadeInUp 0.6s ease-out forwards"
       }}
     >
-      <div className="p-5">
-        <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/10">
+      <div className="p-4">
+        <div className="mb-3 flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/10">
             <img
               src={certificate.logo}
               alt={certificate.issuer}
-              className="h-7 w-7 object-contain"
+              className="h-6 w-6 object-contain"
             />
           </div>
 
           <div className="min-w-0">
-            <h3 className="line-clamp-1 text-base font-semibold text-white">
+            <h3 className="line-clamp-1 text-sm font-semibold text-white">
               {certificate.title}
             </h3>
             <p className="text-xs text-gray-400">
@@ -651,19 +742,19 @@ const CertificateCard = ({ certificate, index }) => {
           </div>
         </div>
 
-        <div className="mb-4 overflow-hidden rounded-xl border border-white/10 bg-black/20">
+        <div className="mb-3 overflow-hidden rounded-xl border border-white/10 bg-black/20">
           <img
             src={certificate.image}
             alt={certificate.title}
-            className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-32 w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
-        <p className="mb-3 text-sm leading-relaxed text-gray-400">
+        <p className="mb-2 text-xs leading-relaxed text-gray-400 line-clamp-2">
           {certificate.description}
         </p>
 
-        <p className="mb-5 text-xs text-gray-500">
+        <p className="mb-4 text-xs text-gray-500">
           {certificate.skills}
         </p>
 
@@ -741,6 +832,10 @@ const CertificateCard = ({ certificate, index }) => {
 
 // Modern Certifications Component
 const ModernCertifications = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const certVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const cardVariants = prefersReducedMotion ? reducedMotionVariants : scaleIn;
+
   return (
     <section id="certifications" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
@@ -756,11 +851,23 @@ const ModernCertifications = () => {
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={certVariants}
+        >
           {certificationsData.map((certificate, index) => (
-            <CertificateCard key={certificate.id} certificate={certificate} index={index} />
+            <motion.div
+              key={certificate.id}
+              variants={cardVariants}
+              custom={index * 0.1}
+            >
+              <CertificateCard certificate={certificate} index={index} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {certificationsData.length === 0 && (
           <div className="text-center py-12">
@@ -773,6 +880,10 @@ const ModernCertifications = () => {
 };
 
 const EducationExperience = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const educationVariants = prefersReducedMotion ? reducedMotionVariants : fadeInLeft;
+  const letterVariants = prefersReducedMotion ? reducedMotionVariants : fadeInRight;
+
   return (
    <section id="education" className="relative py-8 px-4 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -785,9 +896,17 @@ const EducationExperience = () => {
   </p>
         </div>
 
-       <div className="grid lg:grid-cols-2 gap-6 items-center max-w-6xl mx-auto">
+       <motion.div
+        className="grid lg:grid-cols-2 gap-6 items-center max-w-6xl mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
           {/* LEFT - Education Info */}
-          <div className="flex justify-center">
+          <motion.div
+            className="flex justify-center"
+            variants={educationVariants}
+          >
             <div className="w-full max-w-[520px] h-[320px] bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
               <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
                 <GraduationCap className="h-4 w-4 text-purple-400" />
@@ -834,15 +953,18 @@ const EducationExperience = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT - Letter Glitch */}
-          <div className="hidden lg:flex justify-center">
+          <motion.div
+            className="hidden lg:flex justify-center"
+            variants={letterVariants}
+          >
             <div className="w-full max-w-[520px] h-[320px] opacity-80">
               <LetterGlitch />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
@@ -1070,11 +1192,25 @@ const buildTechRows = (items, rowSizes) => {
 
 const TechStackRows = ({ techs, isVisible }) => {
   const rows = buildTechRows(techs, [8, 6, 4, 3]);
+  const prefersReducedMotion = useReducedMotion();
+  const skillsVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const rowVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
 
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-4">
+    <motion.div
+      className="mx-auto w-full max-w-5xl space-y-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={skillsVariants}
+    >
       {rows.map((row, rowIndex) => (
-        <div key={`row-${rowIndex}`} className="flex flex-wrap justify-center gap-3">
+        <motion.div
+          key={`row-${rowIndex}`}
+          className="flex flex-wrap justify-center gap-3"
+          variants={rowVariants}
+          custom={rowIndex * 0.15}
+        >
           {row.map((tech, index) => (
             <TechStackCard
               key={`${tech.category}-${tech.name}`}
@@ -1083,9 +1219,9 @@ const TechStackRows = ({ techs, isVisible }) => {
               isVisible={isVisible}
             />
           ))}
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
@@ -1244,12 +1380,12 @@ const ProjectCard = ({ project }) => {
         />
       </div>
 
-      <div className="flex h-[320px] flex-col gap-3 p-6">
-        <h3 className="text-xl font-semibold text-white">
+      <div className="flex h-[280px] flex-col gap-2.5 p-5">
+        <h3 className="text-lg font-semibold text-white">
           {project.title}
         </h3>
 
-        <p className="text-sm leading-relaxed text-gray-300">
+        <p className="text-sm leading-relaxed text-gray-300 line-clamp-3">
           {project.description}
         </p>
 
@@ -1257,7 +1393,7 @@ const ProjectCard = ({ project }) => {
           {project.tags.map(tag => (
             <span
               key={tag}
-              className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-gray-300"
+              className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-semibold text-gray-300"
             >
               {tag}
             </span>
@@ -1293,9 +1429,12 @@ const ProjectCard = ({ project }) => {
 const Projects = () => {
   const [filter, setFilter] = useState('All');
   const filters = ['All', 'Web', 'Mobile', 'UI/UX'];
+  const prefersReducedMotion = useReducedMotion();
+  const projectsVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const cardVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
 
-  const filteredProjects = filter === 'All' 
-    ? projectsData 
+  const filteredProjects = filter === 'All'
+    ? projectsData
     : projectsData.filter(project => project.tags.includes(filter));
 
   return (
@@ -1330,19 +1469,23 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={projectsVariants}
+        >
           {filteredProjects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animation: 'fadeInUp 0.6s ease-out forwards'
-              }}
+              variants={cardVariants}
+              custom={index * 0.1}
             >
               <ProjectCard project={project} />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
@@ -1360,6 +1503,8 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSending, setIsSending] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const contactVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
 
   const validate = () => {
     const newErrors = {};
@@ -1426,10 +1571,19 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-transparent">
+    <motion.section 
+      id="contact" 
+      className="py-20 px-4 bg-transparent"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          variants={contactVariants}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-3">
             <span className="text-gray-800 dark:text-white">Get In </span>
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Touch</span>
@@ -1437,9 +1591,13 @@ const ContactForm = () => {
           <p className="text-gray-600 dark:text-gray-400 text-base max-w-2xl mx-auto">
             Let's discuss your next project or collaboration opportunity
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 max-w-2xl mx-auto">
+        <motion.div
+          className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 max-w-2xl mx-auto"
+          variants={contactVariants}
+          custom={0.2}
+        >
           {submitted ? (
             <div className="text-center py-8">
               <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
@@ -1527,7 +1685,7 @@ const ContactForm = () => {
               </button>
             </form>
           )}
-        </div>
+        </motion.div>
 
         {/* Quick Contact */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
@@ -1547,7 +1705,7 @@ const ContactForm = () => {
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
