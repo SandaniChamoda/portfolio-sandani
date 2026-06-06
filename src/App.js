@@ -315,7 +315,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   ];
 
   return (
-    <nav className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0e0420]/95 backdrop-blur-sm border-b border-[#2C1250]/20' : 'nav-contrast'}`}>
+   <nav className="fixed w-full top-0 left-0 z-50 transition-all duration-300 bg-[#2b0b55]/95 backdrop-blur-sm border-b border-[#5b21b6]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Left - Logo & Branding */}
@@ -515,7 +515,7 @@ const HeroAbout = () => {
   transition-all duration-300
   "
 >
-  Download CV
+  Download Resume
 </a>
           </div>
 
