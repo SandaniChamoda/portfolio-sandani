@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Camera, Code, Database, Palette, Terminal, Download, Mail, Github, Linkedin, ExternalLink, Menu, X, Sun, Moon, ChevronUp, Filter, MapPin, Briefcase, GraduationCap } from 'lucide-react';
 import { motion, useReducedMotion } from 'framer-motion';
 import './App.css';
+import emailjs from '@emailjs/browser';
 
 // Animation variants for smooth, premium scroll animations
 const fadeInUp = {
@@ -1446,7 +1447,7 @@ const Skills = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% {
             transform: translateX(-100%) skewX(-12deg);
@@ -1634,6 +1635,11 @@ const ContactForm = () => {
   const prefersReducedMotion = useReducedMotion();
   const contactVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
 
+  // Initialize EmailJS with public key
+  useEffect(() => {
+    emailjs.init("jyMuZQ_GHR9QpDFyO");
+  }, []);
+
   const validate = () => {
     const newErrors = {};
     if (!formData.name.trim()) newErrors.name = 'Name is required';
@@ -1649,25 +1655,24 @@ const ContactForm = () => {
   const sendEmail = async (formData) => {
     try {
       const response = await emailjs.send(
-        'service_your_service_id', // You'll need to get this from EmailJS
-        'template_your_template_id', // You'll need to create this in EmailJS
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_email: 'sandanichamoda450@gmail.com',
-          reply_to: formData.email
-        }
-      );
-      
-      if (response.status === 200) {
-        return { success: true };
-      } else {
-        return { success: false, error: 'Failed to send email' };
-      }
+  'service_4j7qwbo',
+  'template_gr772nv',
+  {
+    from_name: formData.name,
+    from_email: formData.email,
+    message: formData.message,
+    to_email: 'sandanichamoda450@gmail.com',
+    reply_to: formData.email
+  },
+  'jyMuZQ_GHR9QpDFyO'
+);
+
+      console.log('EmailJS Response:', response);
+      return { success: true };
     } catch (error) {
       console.error('EmailJS Error:', error);
-      return { success: false, error: 'Email service unavailable' };
+      console.error('Error details:', error.text || error.message);
+      return { success: false, error: error.text || 'Email service unavailable' };
     }
   };
 
@@ -1728,17 +1733,23 @@ const ContactForm = () => {
         >
           {submitted ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce shadow-lg shadow-green-500/50">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                Message Sent!
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Message Sent Successfully!
               </h3>
-              <p className="text-gray-300 text-sm">
-                I'll get back to you as soon as possible.
+              <p className="text-gray-300 text-sm mb-4">
+                Thank you for reaching out. I'll get back to you as soon as possible.
               </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all"
+              >
+                Send Another Message
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -1798,9 +1809,25 @@ const ContactForm = () => {
               >
                 {isSending ? (
                   <>
-                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8 018 0 4-4h8v4H8z"></path>
+                    <svg
+                      className="animate-spin h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M12 2a10 10 0 0 1 10 10h-4a6 6 0 0 0-6-6V2z"
+                      />
                     </svg>
                     <span className="ml-2">Sending...</span>
                   </>
