@@ -92,6 +92,36 @@ const useLocalStorage = (key, initialValue) => {
   return [storedValue, setValue];
 };
 
+// Custom hook to lock body scroll when a modal is open
+const useBodyScrollLock = (isOpen) => {
+  const scrollPositionRef = useRef(0);
+
+  useEffect(() => {
+    if (isOpen) {
+      scrollPositionRef.current = window.scrollY;
+
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+
+      window.scrollTo(0, scrollPositionRef.current);
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [isOpen]);
+};
+
 // Home Background Animation with Floating Code Symbols
 const CODE_SYMBOLS = [
   { sym: "</>", x: 5, y: 8, size: 13, delay: 0, dur: 18 },
@@ -215,13 +245,13 @@ const certificationsData = [
     id: 6,
     title: "MongoDB User Model & Backend Development",
     issuer: "Self Learning",
-    issueDate: "In Progress",
-    status: "In Progress",
+    issueDate: "2026",
+    status: "Completed",
     logo: "/certificate/mongodb-logo.png",
     image: "/certificate/mongodb-user-model.jpg",
-    description: "Currently learning MongoDB schema design, user models, authentication flow, and backend data handling.",
+    description: "Completed learning MongoDB schema design, user models, authentication flow, and backend data handling.",
     skills: "MongoDB · User Model · Backend",
-    certificateLink: ""
+    certificateLink: "/certificate/mongodb.pdf"
   }
 ];
 
@@ -280,6 +310,24 @@ const projectsData = [
     screenshot: "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/vehicle-insurance-system.git",
     demo: "https://youtu.be/vehicle-insurance-demo"
+  },
+  {
+    id: 7,
+    title: "VetCareX – Pet Care & Veterinary Management App",
+    description: "[Figma Design Prototype] A mobile application designed to help pet owners manage pet health records, book veterinary appointments, track vaccinations, and locate nearby pet care services. Built with a user-friendly interface focused on convenient pet healthcare management.",
+    tags: ["UI/UX Design", "Figma", "Mobile App Design", "Prototyping", "User Research"],
+    screenshot: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&h=600&fit=crop",
+    repo: "",
+    demo: "https://www.figma.com/proto/BKSaY1mEn4VKvDfXSBCQMp/VetcareX?node-id=135-96&starting-point-node-id=1%3A2"
+  },
+  {
+    id: 8,
+    title: "AI ChatBot – Intelligent Virtual Assistant",
+    description: "[Figma Design Prototype] An AI-powered chatbot designed to provide instant responses, answer user queries, and assist with various tasks through natural language conversations. Features an intuitive chat interface and intelligent response generation for enhanced user engagement.",
+    tags: ["AI", "Chatbot", "NLP", "UI/UX", "Figma"],
+    screenshot: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+    repo: "",
+    demo: "https://www.figma.com/proto/Cd0uTUcAp4zNUVtXsVdbhA/Chatflow?node-id=2-2&starting-point-node-id=88%3A89"
   }
 ];
 
@@ -714,6 +762,9 @@ const CertificateCard = ({ certificate, index }) => {
   const [showCredential, setShowCredential] = useState(false);
   const isCompleted = certificate.status === "Completed";
 
+  // Lock body scroll when certificate modal is open
+  useBodyScrollLock(showCredential);
+
   return (
     <div
       className="group h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.30)] transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30"
@@ -780,7 +831,7 @@ const CertificateCard = ({ certificate, index }) => {
           onClick={() => setShowCredential(false)}
         >
           <div
-            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-purple-400/20 bg-[#0b0f2b] shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
+            className="relative w-full max-w-md overflow-hidden rounded-3xl border border-purple-400/20 bg-[#0b0f2b] shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
@@ -974,9 +1025,26 @@ const EducationExperience = () => {
 const WorkExperience = () => {
   const [showGallery, setShowGallery] = useState(false);
   const [showCertificate, setShowCertificate] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const galleryImages = [
+    "/internship-1.jpg",
+    "/internship-2.jpg"
+  ];
 
   const toggleGallery = () => setShowGallery(!showGallery);
   const toggleCertificate = () => setShowCertificate(!showCertificate);
+
+  // Lock body scroll when either modal is open
+  useBodyScrollLock(showGallery || showCertificate);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
 
   return (
     <section id="experience" className="relative isolate overflow-hidden py-20 px-4 bg-transparent">
@@ -999,83 +1067,143 @@ const WorkExperience = () => {
           </p>
         </div>
 
-        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-purple-500/20 bg-[linear-gradient(180deg,rgba(19,9,44,0.96)_0%,rgba(8,4,20,0.95)_100%)] p-5 shadow-[0_24px_90px_rgba(118,55,193,0.28)] backdrop-blur-xl">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_30%)]" aria-hidden="true" />
-
-          <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
-            <Briefcase className="h-4 w-4 text-purple-300" />
-            Work Experience
-          </h3>
-
-          <div className="space-y-2">
-            <div className="relative overflow-hidden rounded-[22px] border border-purple-500/18 bg-white/[0.045] p-4 shadow-[0_0_0_1px_rgba(168,85,247,0.04),0_10px_28px_rgba(0,0,0,0.22)]">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-400/70 to-transparent" aria-hidden="true" />
-              <div className="flex justify-between items-start mb-1">
-                <h4 className="font-semibold text-white text-xs">Intern</h4>
-                <span className="px-2 py-1 bg-purple-900/35 text-purple-200 text-xs font-medium rounded-full border border-purple-500/30 shadow-[0_0_18px_rgba(168,85,247,0.12)]">
-                  Feb 2023 – Aug 2023
-                </span>
+        <div className="relative mx-auto max-w-4xl">
+          <div className="relative overflow-hidden rounded-3xl border border-purple-500/20 bg-gradient-to-br from-[#1a0b2e]/95 to-[#0d0518]/95 backdrop-blur-xl shadow-[0_0_60px_rgba(139,92,246,0.15)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5" />
+            
+            <div className="relative p-8 md:p-10">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/30 flex items-center justify-center">
+                    <Briefcase className="w-7 h-7 text-purple-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">Intern</h3>
+                    <p className="text-purple-300 font-medium">People's Bank, Galle Main Street Branch</p>
+                  </div>
+                </div>
+                <div className="px-4 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full border border-purple-500/30">
+                  <span className="text-purple-200 text-sm font-medium">Feb 2023 – Aug 2023</span>
+                </div>
               </div>
 
-              <p className="text-purple-300 font-medium text-xs mb-2">
-                People's Bank, Galle Main Street Branch
-              </p>
+              {/* Description */}
+              <div className="space-y-4 mb-8">
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Gained hands-on experience in customer service, digital banking solutions, and financial operations while working at a leading banking institution.
+                </p>
+                
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-gray-400 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-blue-400 mt-2 flex-shrink-0" />
+                    <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-400 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-blue-400 mt-2 flex-shrink-0" />
+                    <span>Used banking software for accurate account processing, transaction recording, and customer support</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-400 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-blue-400 mt-2 flex-shrink-0" />
+                    <span>Supported customers with mobile banking features, online transactions, and digital payment solutions</span>
+                  </li>
+                </ul>
+              </div>
 
-              <ul className="space-y-1.5 text-gray-400 text-xs mb-3">
-                <li className="flex items-start">
-                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
-                  <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting.</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
-                  <span>Used banking software for accurate account processing, transaction recording, and customer support.</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
-                  <span>Supported customers with mobile banking features, online transactions, and digital payment solutions.</span>
-                </li>
-              </ul>
-
-              <div className="flex flex-wrap gap-3 pt-2 border-t border-white/10">
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4">
                 <button
                   onClick={toggleCertificate}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-400/30 bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 text-white text-xs font-medium shadow-[0_0_18px_rgba(168,85,247,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(168,85,247,0.45)]"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <span>🔗</span>
+                  <ExternalLink className="w-4 h-4" />
                   View Certificate
                 </button>
 
-                <div
-                  className="flex items-center gap-1 cursor-pointer text-gray-300 transition-colors duration-300 hover:text-purple-300"
+                <button
                   onClick={toggleGallery}
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-purple-500/30 bg-purple-500/10 text-purple-200 font-medium hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
                 >
-                  <span className="text-purple-300 text-xs">📷</span>
-                  <span className="text-xs text-gray-400">Gallery</span>
-                </div>
+                  <Camera className="w-4 h-4" />
+                  View Gallery
+                </button>
               </div>
-
-              {/* Gallery Images */}
-              {showGallery && (
-                <div className="grid grid-cols-2 gap-2 mt-2 transition-all duration-300">
-                  <img src="/internship-1.jpg" alt="Internship Photo 1" className="w-full h-16 object-cover rounded border border-purple-500/15" />
-                  <img src="/internship-2.jpg" alt="Internship Photo 2" className="w-full h-16 object-cover rounded border border-purple-500/15" />
-                </div>
-              )}
             </div>
           </div>
         </div>
 
+        {/* Certificate Modal */}
         {showCertificate && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={toggleCertificate}>
-            <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-4xl max-h-[90vh] overflow-auto" onClick={(e) => e.stopPropagation()}>
-              <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-700 p-4 flex justify-between items-center">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white">Service Certificate</h3>
-                <button onClick={toggleCertificate} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                  ✕
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={toggleCertificate}>
+            <div className="bg-white dark:bg-gray-900 rounded-lg max-w-md max-h-[50vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-2 flex justify-between items-center">
+                <h3 className="text-sm font-bold text-gray-800 dark:text-white">Service Certificate</h3>
+                <button onClick={toggleCertificate} className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <div className="p-4">
+              <div className="p-2 overflow-auto max-h-[40vh]">
                 <img src="/service-certificate.pdf.jpeg" alt="Service Certificate" className="w-full h-auto rounded-lg" />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Gallery Modal with Swipe */}
+        {showGallery && (
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4" onClick={toggleGallery}>
+            <div className="relative max-w-md max-h-[45vh] w-full" onClick={(e) => e.stopPropagation()}>
+              {/* Close Button */}
+              <button
+                onClick={toggleGallery}
+                className="absolute -top-8 right-0 p-2 text-white hover:text-gray-300 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Image Container */}
+              <div className="relative bg-gray-900 rounded-xl overflow-hidden">
+                <img
+                  src={galleryImages[currentImageIndex]}
+                  alt={`Gallery Image ${currentImageIndex + 1}`}
+                  className="w-full h-auto max-h-[35vh] object-contain"
+                />
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <ChevronUp className="w-4 h-4 -rotate-90" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <ChevronUp className="w-4 h-4 rotate-90" />
+                </button>
+
+                {/* Image Counter */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/50 text-white text-xs">
+                  {currentImageIndex + 1} / {galleryImages.length}
+                </div>
+              </div>
+
+              {/* Thumbnail Strip */}
+              <div className="flex gap-2 mt-3 justify-center">
+                {galleryImages.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-10 h-10 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === currentImageIndex
+                        ? 'border-purple-500 opacity-100'
+                        : 'border-transparent opacity-50 hover:opacity-75'
+                    }`}
+                  >
+                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
               </div>
             </div>
           </div>
