@@ -1,6 +1,74 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Camera, Code, Database, Palette, Terminal, Download, Mail, Github, Linkedin, ExternalLink, Menu, X, Sun, Moon, ChevronUp, Filter, MapPin, Briefcase, GraduationCap } from 'lucide-react';
+import { motion, useReducedMotion } from 'framer-motion';
 import './App.css';
+import emailjs from '@emailjs/browser';
+
+// Animation variants for smooth, premium scroll animations
+const fadeInUp = {
+  hidden: { opacity: 0, y: 40 },
+  visible: { 
+    opacity: 1, 
+    y: 0,
+    transition: { 
+      duration: 0.6, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const fadeInLeft = {
+  hidden: { opacity: 0, x: -40 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const fadeInRight = {
+  hidden: { opacity: 0, x: 40 },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: { 
+      duration: 0.7, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.9 },
+  visible: { 
+    opacity: 1, 
+    scale: 1,
+    transition: { 
+      duration: 0.5, 
+      ease: [0.25, 0.46, 0.45, 0.94] 
+    }
+  }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+// Reduced motion variants for accessibility
+const reducedMotionVariants = {
+  hidden: { opacity: 1 },
+  visible: { opacity: 1 }
+};
 
 // Custom hook for localStorage
 const useLocalStorage = (key, initialValue) => {
@@ -23,6 +91,36 @@ const useLocalStorage = (key, initialValue) => {
   };
 
   return [storedValue, setValue];
+};
+
+// Custom hook to lock body scroll when a modal is open
+const useBodyScrollLock = (isOpen) => {
+  const scrollPositionRef = useRef(0);
+
+  useEffect(() => {
+    if (isOpen) {
+      scrollPositionRef.current = window.scrollY;
+
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollPositionRef.current}px`;
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+
+      window.scrollTo(0, scrollPositionRef.current);
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, [isOpen]);
 };
 
 // Home Background Animation with Floating Code Symbols
@@ -148,13 +246,13 @@ const certificationsData = [
     id: 6,
     title: "MongoDB User Model & Backend Development",
     issuer: "Self Learning",
-    issueDate: "In Progress",
-    status: "In Progress",
+    issueDate: "2026",
+    status: "Completed",
     logo: "/certificate/mongodb-logo.png",
     image: "/certificate/mongodb-user-model.jpg",
-    description: "Currently learning MongoDB schema design, user models, authentication flow, and backend data handling.",
+    description: "Completed learning MongoDB schema design, user models, authentication flow, and backend data handling.",
     skills: "MongoDB · User Model · Backend",
-    certificateLink: ""
+    certificateLink: "/certificate/mongodb.pdf"
   }
 ];
 
@@ -166,8 +264,8 @@ const projectsData = [
     description: "A full-stack platform helping students prepare for internships with secure authentication, profile management, and role-based quizzes. Built with a modern, scalable tech stack.",
     tags: ["Full Stack", "Auth", "Quizzes", "Web"],
     screenshot: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/Internship-and-Job-preparation-platform.git",
-    demo: "https://youtu.be/IsNKoyDltUg"
+    repo: "https://github.com/SandaniChamoda/Internship-and-Job-preparation-platform",
+    demo: "https://youtu.be/93NH3bHEFdU"
   },
   {
     id: 2,
@@ -175,7 +273,7 @@ const projectsData = [
     description: "Developed the ticketing module for reporting, tracking, and resolving campus incidents with status workflows and role-based access.",
     tags: ["Spring Boot", "React", "MySQL", "REST APIs"],
     screenshot: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49.git",
+    repo: "https://github.com/SandaniChamoda/SandaniChamoda-it3030-paf-2026-smart-campus-group49",
     demo: "https://youtu.be/Q4eDpgoZaKc"
   },
   {
@@ -184,7 +282,7 @@ const projectsData = [
     description: "A MERN platform for managing driving school operations, including booking and progress tracking. Implemented secure payments with JWT authentication and role-based access control.",
     tags: ["MERN", "React", "Node.js", "MongoDB", "Express", "Tailwind CSS"],
     screenshot: "https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/RiyaGuru.git",
+    repo: "https://github.com/SandaniChamoda/RiyaGuru.git",
     demo: "https://youtu.be/JuJEVTcUnkw"
   },
   {
@@ -193,7 +291,7 @@ const projectsData = [
     description: "An offline Android wellness app for habit tracking, mood journaling, and hydration reminders with shake-sensor integration and home-screen widget.",
     tags: ["Kotlin", "Android Studio", "SharedPreferences", "Mobile"],
     screenshot: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop",
-    repo: "https://github.com/SandaniChamoda/SandaniChamoda/Wellnest-Habit-tracker-app.git",
+    repo: "https://github.com/SandaniChamoda/Wellnest-Habit-tracker-app.git",
     demo: "https://youtube.com/shorts/R8BEB9kUKw8?feature=share"
   },
   {
@@ -203,7 +301,7 @@ const projectsData = [
     tags: ["Java", "MySQL", "Bootstrap", "Web"],
     screenshot: "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/hotel-customer-care.git",
-    demo: "https://youtu.be/hotel-customer-care-demo"
+    demo: "https://youtu.be/VTrvZoPHhzg"
   },
   {
     id: 6,
@@ -213,6 +311,24 @@ const projectsData = [
     screenshot: "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?w=800&h=600&fit=crop",
     repo: "https://github.com/SandaniChamoda/SandaniChamoda/vehicle-insurance-system.git",
     demo: "https://youtu.be/vehicle-insurance-demo"
+  },
+  {
+    id: 7,
+    title: "VetCareX – Pet Care & Veterinary Management App",
+    description: "[Figma Design Prototype] A mobile application designed to help pet owners manage pet health records, book veterinary appointments, track vaccinations, and locate nearby pet care services. Built with a user-friendly interface focused on convenient pet healthcare management.",
+    tags: ["UI/UX Design", "Figma", "Mobile App Design", "Prototyping", "User Research"],
+    screenshot: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=800&h=600&fit=crop",
+    repo: "",
+    demo: "https://www.figma.com/proto/BKSaY1mEn4VKvDfXSBCQMp/VetcareX?node-id=135-96&starting-point-node-id=1%3A2"
+  },
+  {
+    id: 8,
+    title: "AI ChatBot – Intelligent Virtual Assistant",
+    description: "[Figma Design Prototype] An AI-powered chatbot designed to provide instant responses, answer user queries, and assist with various tasks through natural language conversations. Features an intuitive chat interface and intelligent response generation for enhanced user engagement.",
+    tags: ["AI", "Chatbot", "NLP", "UI/UX", "Figma"],
+    screenshot: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&h=600&fit=crop",
+    repo: "",
+    demo: "https://www.figma.com/proto/Cd0uTUcAp4zNUVtXsVdbhA/Chatflow?node-id=2-2&starting-point-node-id=88%3A89"
   }
 ];
 
@@ -315,7 +431,7 @@ const Navbar = ({ theme, toggleTheme }) => {
   ];
 
   return (
-    <nav className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${isScrolled ? 'bg-[#0e0420]/95 backdrop-blur-sm border-b border-[#2C1250]/20' : 'nav-contrast'}`}>
+   <nav className="fixed w-full top-0 left-0 z-50 transition-all duration-300 bg-[#2b0b55]/95 backdrop-blur-sm border-b border-[#5b21b6]/20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Left - Logo & Branding */}
@@ -403,6 +519,10 @@ const Navbar = ({ theme, toggleTheme }) => {
 
 //Hero about
 const HeroAbout = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const heroVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const itemVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
+
   const orbitOuterItems = [
     {
       key: 'react',
@@ -481,43 +601,63 @@ const HeroAbout = () => {
        <div className="grid lg:grid-cols-2 gap-12 items-center max-w-6xl mx-auto mt-6"> 
           
           {/* Left Side - Content */}
-          <div className="space-y-8 lg:pr-8 pt-10 md:pt-14 lg:pt-18 hero-left-seq">
+          <motion.div
+            className="space-y-8 lg:pr-8 pt-10 md:pt-14 lg:pt-18 hero-left-seq"
+            initial="hidden"
+            animate="visible"
+            variants={heroVariants}
+          >
             {/* Badge */}
-            <div className="inline-flex items-center gap-2 px-5 py-0.2 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-full w-fit">
-              <span className="text-lg">💎</span>
-              <span className="text-sm font-semibold bg-gradient-to-r from-purple-400 to-blue-100 bg-clip-text text-transparent">Fullstack Developer </span>
-            </div>
+            <motion.div
+              variants={itemVariants}
+              custom={0}
+            >
+              <div className="inline-flex items-center gap-2 px-5 py-0.2 bg-gradient-to-r from-purple-900/20 to-blue-900/20 border border-purple-600/30 rounded-full w-fit">
+                <span className="text-lg">💎</span>
+                <span className="text-sm font-semibold bg-gradient-to-r from-purple-400 to-blue-100 bg-clip-text text-transparent">Fullstack Developer </span>
+              </div>
+            </motion.div>
 
             {/* Main Heading */}
-           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight whitespace-nowrap">
+            <motion.h1
+              className="text-4xl sm:text-5xl md:text-6xl font-bold leading-tight whitespace-nowrap"
+              variants={itemVariants}
+              custom={0.1}
+            >
               <span className="text-white">Hi, I am </span>
               <span className="bg-gradient-to-r from-purple-400 to-blue-500 bg-clip-text text-transparent">Sandani</span>
-            </h1>
+            </motion.h1>
 
             {/* Bio */}
-            <p className="text-lg text-gray-400 leading-relaxed max-w-lg">
-              Building scalable web applications with real-world impact. Experienced in full-stack development, working across modern frontend and backend technologies to deliver clean, user-focused solutions. </p>
+            <motion.p
+              className="text-lg text-gray-400 leading-relaxed max-w-lg"
+              variants={itemVariants}
+              custom={0.2}
+            >
+              3rd Year Information Technology Undergraduate at SLIIT with a passion for Software Engineering, Full-Stack Development, Data Analytics, and UI/UX Design. I enjoy building practical solutions and continuously learning modern technologies. </motion.p>
 
             {/* CTA Button */}
-           <a
-  href="/Sandani Chamoda CV.pdf"
-  download="Sandani Chamoda CV.pdf"
-  target="_blank"
-  className="
-  inline-block px-9 py-2 rounded-xl font-semibold text-white
-  bg-gradient-to-r from-purple-500/10 via-purple-500/20 to-purple-500/10
-  backdrop-blur-lg
-  border border-purple-400/30
-  shadow-[0_0_20px_rgba(139,92,246,0.25)]
-  hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]
-  hover:border-purple-400/50
-  hover:scale-105
-  transition-all duration-300
-  "
->
-  Download CV
-</a>
-          </div>
+            <motion.div variants={itemVariants} custom={0.3}>
+              <a
+                href="/Sandani Chamoda CV.pdf"
+                download="Sandani Chamoda CV.pdf"
+                target="_blank"
+                className="
+                inline-block px-9 py-2 rounded-xl font-semibold text-white
+                bg-gradient-to-r from-purple-500/10 via-purple-500/20 to-purple-500/10
+                backdrop-blur-lg
+                border border-purple-400/30
+                shadow-[0_0_20px_rgba(139,92,246,0.25)]
+                hover:shadow-[0_0_30px_rgba(139,92,246,0.4)]
+                hover:border-purple-400/50
+                hover:scale-105
+                transition-all duration-300
+                "
+              >
+                Download Resume
+              </a>
+            </motion.div>
+          </motion.div>
 
           {/* Right Side - Tech Stack Icons */}
           <div className="relative h-[24rem] sm:h-[26rem] md:h-[30rem] flex items-center justify-center md:translate-y-4 lg:translate-y-6 md:translate-x-4 lg:translate-x-8">
@@ -623,6 +763,9 @@ const CertificateCard = ({ certificate, index }) => {
   const [showCredential, setShowCredential] = useState(false);
   const isCompleted = certificate.status === "Completed";
 
+  // Lock body scroll when certificate modal is open
+  useBodyScrollLock(showCredential);
+
   return (
     <div
       className="group h-full rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.30)] transition-all duration-300 hover:-translate-y-1 hover:border-purple-400/30"
@@ -631,18 +774,18 @@ const CertificateCard = ({ certificate, index }) => {
         animation: "fadeInUp 0.6s ease-out forwards"
       }}
     >
-      <div className="p-5">
-        <div className="mb-4 flex items-center gap-3">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-white/10 bg-white/10">
+      <div className="p-4">
+        <div className="mb-3 flex items-center gap-3">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/10">
             <img
               src={certificate.logo}
               alt={certificate.issuer}
-              className="h-7 w-7 object-contain"
+              className="h-6 w-6 object-contain"
             />
           </div>
 
           <div className="min-w-0">
-            <h3 className="line-clamp-1 text-base font-semibold text-white">
+            <h3 className="line-clamp-1 text-sm font-semibold text-white">
               {certificate.title}
             </h3>
             <p className="text-xs text-gray-400">
@@ -651,19 +794,19 @@ const CertificateCard = ({ certificate, index }) => {
           </div>
         </div>
 
-        <div className="mb-4 overflow-hidden rounded-xl border border-white/10 bg-black/20">
+        <div className="mb-3 overflow-hidden rounded-xl border border-white/10 bg-black/20">
           <img
             src={certificate.image}
             alt={certificate.title}
-            className="h-40 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="h-32 w-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
 
-        <p className="mb-3 text-sm leading-relaxed text-gray-400">
+        <p className="mb-2 text-xs leading-relaxed text-gray-400 line-clamp-2">
           {certificate.description}
         </p>
 
-        <p className="mb-5 text-xs text-gray-500">
+        <p className="mb-4 text-xs text-gray-500">
           {certificate.skills}
         </p>
 
@@ -689,7 +832,7 @@ const CertificateCard = ({ certificate, index }) => {
           onClick={() => setShowCredential(false)}
         >
           <div
-            className="relative w-full max-w-5xl overflow-hidden rounded-3xl border border-purple-400/20 bg-[#0b0f2b] shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
+            className="relative w-full max-w-md overflow-hidden rounded-3xl border border-purple-400/20 bg-[#0b0f2b] shadow-[0_30px_80px_rgba(0,0,0,0.55)]"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-white/10 px-6 py-4">
@@ -741,6 +884,10 @@ const CertificateCard = ({ certificate, index }) => {
 
 // Modern Certifications Component
 const ModernCertifications = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const certVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const cardVariants = prefersReducedMotion ? reducedMotionVariants : scaleIn;
+
   return (
     <section id="certifications" className="py-20 px-4 bg-transparent">
       <div className="max-w-7xl mx-auto">
@@ -756,11 +903,23 @@ const ModernCertifications = () => {
         </div>
 
         {/* Certifications Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={certVariants}
+        >
           {certificationsData.map((certificate, index) => (
-            <CertificateCard key={certificate.id} certificate={certificate} index={index} />
+            <motion.div
+              key={certificate.id}
+              variants={cardVariants}
+              custom={index * 0.1}
+            >
+              <CertificateCard certificate={certificate} index={index} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {certificationsData.length === 0 && (
           <div className="text-center py-12">
@@ -773,6 +932,10 @@ const ModernCertifications = () => {
 };
 
 const EducationExperience = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const educationVariants = prefersReducedMotion ? reducedMotionVariants : fadeInLeft;
+  const letterVariants = prefersReducedMotion ? reducedMotionVariants : fadeInRight;
+
   return (
    <section id="education" className="relative py-8 px-4 bg-transparent overflow-hidden">
       <div className="max-w-7xl mx-auto">
@@ -785,9 +948,17 @@ const EducationExperience = () => {
   </p>
         </div>
 
-       <div className="grid lg:grid-cols-2 gap-6 items-center max-w-6xl mx-auto">
+       <motion.div
+        className="grid lg:grid-cols-2 gap-6 items-center max-w-6xl mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
           {/* LEFT - Education Info */}
-          <div className="flex justify-center">
+          <motion.div
+            className="flex justify-center"
+            variants={educationVariants}
+          >
             <div className="w-full max-w-[520px] h-[320px] bg-white/5 backdrop-blur-sm rounded-2xl p-4 border border-white/10">
               <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
                 <GraduationCap className="h-4 w-4 text-purple-400" />
@@ -834,15 +1005,18 @@ const EducationExperience = () => {
                 </div>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* RIGHT - Letter Glitch */}
-          <div className="hidden lg:flex justify-center">
+          <motion.div
+            className="hidden lg:flex justify-center"
+            variants={letterVariants}
+          >
             <div className="w-full max-w-[520px] h-[320px] opacity-80">
               <LetterGlitch />
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
@@ -852,9 +1026,26 @@ const EducationExperience = () => {
 const WorkExperience = () => {
   const [showGallery, setShowGallery] = useState(false);
   const [showCertificate, setShowCertificate] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const galleryImages = [
+    "/internship-1.jpg",
+    "/internship-2.jpg"
+  ];
 
   const toggleGallery = () => setShowGallery(!showGallery);
   const toggleCertificate = () => setShowCertificate(!showCertificate);
+
+  // Lock body scroll when either modal is open
+  useBodyScrollLock(showGallery || showCertificate);
+
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev - 1 + galleryImages.length) % galleryImages.length);
+  };
 
   return (
     <section id="experience" className="relative isolate overflow-hidden py-20 px-4 bg-transparent">
@@ -877,83 +1068,143 @@ const WorkExperience = () => {
           </p>
         </div>
 
-        <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[28px] border border-purple-500/20 bg-[linear-gradient(180deg,rgba(19,9,44,0.96)_0%,rgba(8,4,20,0.95)_100%)] p-5 shadow-[0_24px_90px_rgba(118,55,193,0.28)] backdrop-blur-xl">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.18),transparent_35%),radial-gradient(circle_at_bottom_left,rgba(59,130,246,0.12),transparent_30%)]" aria-hidden="true" />
-
-          <h3 className="mb-3 flex items-center gap-2 text-lg font-semibold text-white">
-            <Briefcase className="h-4 w-4 text-purple-300" />
-            Work Experience
-          </h3>
-
-          <div className="space-y-2">
-            <div className="relative overflow-hidden rounded-[22px] border border-purple-500/18 bg-white/[0.045] p-4 shadow-[0_0_0_1px_rgba(168,85,247,0.04),0_10px_28px_rgba(0,0,0,0.22)]">
-              <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-purple-400/70 to-transparent" aria-hidden="true" />
-              <div className="flex justify-between items-start mb-1">
-                <h4 className="font-semibold text-white text-xs">Intern</h4>
-                <span className="px-2 py-1 bg-purple-900/35 text-purple-200 text-xs font-medium rounded-full border border-purple-500/30 shadow-[0_0_18px_rgba(168,85,247,0.12)]">
-                  Feb 2023 – Aug 2023
-                </span>
+        <div className="relative mx-auto max-w-4xl">
+          <div className="relative overflow-hidden rounded-3xl border border-purple-500/20 bg-gradient-to-br from-[#1a0b2e]/95 to-[#0d0518]/95 backdrop-blur-xl shadow-[0_0_60px_rgba(139,92,246,0.15)]">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5" />
+            
+            <div className="relative p-8 md:p-10">
+              {/* Header */}
+              <div className="flex items-start justify-between mb-8">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-purple-500/30 flex items-center justify-center">
+                    <Briefcase className="w-7 h-7 text-purple-300" />
+                  </div>
+                  <div>
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-1">Intern</h3>
+                    <p className="text-purple-300 font-medium">People's Bank, Galle Main Street Branch</p>
+                  </div>
+                </div>
+                <div className="px-4 py-2 bg-gradient-to-r from-purple-600/20 to-blue-600/20 rounded-full border border-purple-500/30">
+                  <span className="text-purple-200 text-sm font-medium">Feb 2023 – Aug 2023</span>
+                </div>
               </div>
 
-              <p className="text-purple-300 font-medium text-xs mb-2">
-                People's Bank, Galle Main Street Branch
-              </p>
+              {/* Description */}
+              <div className="space-y-4 mb-8">
+                <p className="text-gray-300 text-sm leading-relaxed">
+                  Gained hands-on experience in customer service, digital banking solutions, and financial operations while working at a leading banking institution.
+                </p>
+                
+                <ul className="space-y-3">
+                  <li className="flex items-start gap-3 text-gray-400 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-blue-400 mt-2 flex-shrink-0" />
+                    <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-400 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-blue-400 mt-2 flex-shrink-0" />
+                    <span>Used banking software for accurate account processing, transaction recording, and customer support</span>
+                  </li>
+                  <li className="flex items-start gap-3 text-gray-400 text-sm">
+                    <div className="w-2 h-2 rounded-full bg-gradient-to-r from-purple-400 to-blue-400 mt-2 flex-shrink-0" />
+                    <span>Supported customers with mobile banking features, online transactions, and digital payment solutions</span>
+                  </li>
+                </ul>
+              </div>
 
-              <ul className="space-y-1.5 text-gray-400 text-xs mb-3">
-                <li className="flex items-start">
-                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
-                  <span>Guided customers through online banking setup, mobile app integration, and digital service troubleshooting.</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
-                  <span>Used banking software for accurate account processing, transaction recording, and customer support.</span>
-                </li>
-                <li className="flex items-start">
-                  <div className="w-1 h-1 bg-purple-400 rounded-full mt-1 mr-2 flex-shrink-0 shadow-[0_0_10px_rgba(196,181,253,0.55)]" />
-                  <span>Supported customers with mobile banking features, online transactions, and digital payment solutions.</span>
-                </li>
-              </ul>
-
-              <div className="flex flex-wrap gap-3 pt-2 border-t border-white/10">
+              {/* Action Buttons */}
+              <div className="flex flex-wrap gap-4">
                 <button
                   onClick={toggleCertificate}
-                  className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-purple-400/30 bg-gradient-to-r from-purple-600 via-violet-600 to-fuchsia-600 text-white text-xs font-medium shadow-[0_0_18px_rgba(168,85,247,0.3)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_28px_rgba(168,85,247,0.45)]"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-purple-600 to-blue-600 text-white font-medium shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 hover:-translate-y-0.5 transition-all duration-300"
                 >
-                  <span>🔗</span>
+                  <ExternalLink className="w-4 h-4" />
                   View Certificate
                 </button>
 
-                <div
-                  className="flex items-center gap-1 cursor-pointer text-gray-300 transition-colors duration-300 hover:text-purple-300"
+                <button
                   onClick={toggleGallery}
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-purple-500/30 bg-purple-500/10 text-purple-200 font-medium hover:bg-purple-500/20 hover:border-purple-500/50 transition-all duration-300"
                 >
-                  <span className="text-purple-300 text-xs">📷</span>
-                  <span className="text-xs text-gray-400">Gallery</span>
-                </div>
+                  <Camera className="w-4 h-4" />
+                  View Gallery
+                </button>
               </div>
-
-              {/* Gallery Images */}
-              {showGallery && (
-                <div className="grid grid-cols-2 gap-2 mt-2 transition-all duration-300">
-                  <img src="/internship-1.jpg" alt="Internship Photo 1" className="w-full h-16 object-cover rounded border border-purple-500/15" />
-                  <img src="/internship-2.jpg" alt="Internship Photo 2" className="w-full h-16 object-cover rounded border border-purple-500/15" />
-                </div>
-              )}
             </div>
           </div>
         </div>
 
+        {/* Certificate Modal */}
         {showCertificate && (
-          <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4" onClick={toggleCertificate}>
-            <div className="bg-white dark:bg-gray-900 rounded-2xl max-w-4xl max-h-[90vh] overflow-auto" onClick={(e) => e.stopPropagation()}>
-              <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-700 p-4 flex justify-between items-center">
-                <h3 className="text-xl font-bold text-gray-800 dark:text-white">Service Certificate</h3>
-                <button onClick={toggleCertificate} className="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
-                  ✕
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4" onClick={toggleCertificate}>
+            <div className="bg-white dark:bg-gray-900 rounded-lg max-w-md max-h-[50vh] overflow-hidden shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <div className="sticky top-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 p-2 flex justify-between items-center">
+                <h3 className="text-sm font-bold text-gray-800 dark:text-white">Service Certificate</h3>
+                <button onClick={toggleCertificate} className="p-1.5 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+                  <X className="w-4 h-4" />
                 </button>
               </div>
-              <div className="p-4">
+              <div className="p-2 overflow-auto max-h-[40vh]">
                 <img src="/service-certificate.pdf.jpeg" alt="Service Certificate" className="w-full h-auto rounded-lg" />
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Gallery Modal with Swipe */}
+        {showGallery && (
+          <div className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4" onClick={toggleGallery}>
+            <div className="relative max-w-md max-h-[45vh] w-full" onClick={(e) => e.stopPropagation()}>
+              {/* Close Button */}
+              <button
+                onClick={toggleGallery}
+                className="absolute -top-8 right-0 p-2 text-white hover:text-gray-300 transition-colors"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              {/* Image Container */}
+              <div className="relative bg-gray-900 rounded-xl overflow-hidden">
+                <img
+                  src={galleryImages[currentImageIndex]}
+                  alt={`Gallery Image ${currentImageIndex + 1}`}
+                  className="w-full h-auto max-h-[35vh] object-contain"
+                />
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevImage}
+                  className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <ChevronUp className="w-4 h-4 -rotate-90" />
+                </button>
+                <button
+                  onClick={nextImage}
+                  className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/50 text-white hover:bg-black/70 transition-colors"
+                >
+                  <ChevronUp className="w-4 h-4 rotate-90" />
+                </button>
+
+                {/* Image Counter */}
+                <div className="absolute bottom-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-black/50 text-white text-xs">
+                  {currentImageIndex + 1} / {galleryImages.length}
+                </div>
+              </div>
+
+              {/* Thumbnail Strip */}
+              <div className="flex gap-2 mt-3 justify-center">
+                {galleryImages.map((img, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImageIndex(index)}
+                    className={`w-10 h-10 rounded-lg overflow-hidden border-2 transition-all ${
+                      index === currentImageIndex
+                        ? 'border-purple-500 opacity-100'
+                        : 'border-transparent opacity-50 hover:opacity-75'
+                    }`}
+                  >
+                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-cover" />
+                  </button>
+                ))}
               </div>
             </div>
           </div>
@@ -1070,11 +1321,25 @@ const buildTechRows = (items, rowSizes) => {
 
 const TechStackRows = ({ techs, isVisible }) => {
   const rows = buildTechRows(techs, [8, 6, 4, 3]);
+  const prefersReducedMotion = useReducedMotion();
+  const skillsVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const rowVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
 
   return (
-    <div className="mx-auto w-full max-w-5xl space-y-4">
+    <motion.div
+      className="mx-auto w-full max-w-5xl space-y-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+      variants={skillsVariants}
+    >
       {rows.map((row, rowIndex) => (
-        <div key={`row-${rowIndex}`} className="flex flex-wrap justify-center gap-3">
+        <motion.div
+          key={`row-${rowIndex}`}
+          className="flex flex-wrap justify-center gap-3"
+          variants={rowVariants}
+          custom={rowIndex * 0.15}
+        >
           {row.map((tech, index) => (
             <TechStackCard
               key={`${tech.category}-${tech.name}`}
@@ -1083,9 +1348,9 @@ const TechStackRows = ({ techs, isVisible }) => {
               isVisible={isVisible}
             />
           ))}
-        </div>
+        </motion.div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 
@@ -1182,7 +1447,7 @@ const Skills = () => {
         )}
       </div>
 
-      <style jsx>{`
+      <style>{`
         @keyframes shimmer {
           0% {
             transform: translateX(-100%) skewX(-12deg);
@@ -1244,12 +1509,12 @@ const ProjectCard = ({ project }) => {
         />
       </div>
 
-      <div className="flex h-[320px] flex-col gap-3 p-6">
-        <h3 className="text-xl font-semibold text-white">
+      <div className="flex h-[280px] flex-col gap-2.5 p-5">
+        <h3 className="text-lg font-semibold text-white">
           {project.title}
         </h3>
 
-        <p className="text-sm leading-relaxed text-gray-300">
+        <p className="text-sm leading-relaxed text-gray-300 line-clamp-3">
           {project.description}
         </p>
 
@@ -1257,7 +1522,7 @@ const ProjectCard = ({ project }) => {
           {project.tags.map(tag => (
             <span
               key={tag}
-              className="rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-gray-300"
+              className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-xs font-semibold text-gray-300"
             >
               {tag}
             </span>
@@ -1293,9 +1558,12 @@ const ProjectCard = ({ project }) => {
 const Projects = () => {
   const [filter, setFilter] = useState('All');
   const filters = ['All', 'Web', 'Mobile', 'UI/UX'];
+  const prefersReducedMotion = useReducedMotion();
+  const projectsVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const cardVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
 
-  const filteredProjects = filter === 'All' 
-    ? projectsData 
+  const filteredProjects = filter === 'All'
+    ? projectsData
     : projectsData.filter(project => project.tags.includes(filter));
 
   return (
@@ -1330,19 +1598,23 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <motion.div
+          className="grid md:grid-cols-2 lg:grid-cols-3 gap-10"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          variants={projectsVariants}
+        >
           {filteredProjects.map((project, index) => (
-            <div
+            <motion.div
               key={project.id}
-              style={{
-                animationDelay: `${index * 100}ms`,
-                animation: 'fadeInUp 0.6s ease-out forwards'
-              }}
+              variants={cardVariants}
+              custom={index * 0.1}
             >
               <ProjectCard project={project} />
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {filteredProjects.length === 0 && (
           <div className="text-center py-12">
@@ -1360,6 +1632,13 @@ const ContactForm = () => {
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSending, setIsSending] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
+  const contactVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
+
+  // Initialize EmailJS with public key
+  useEffect(() => {
+    emailjs.init("jyMuZQ_GHR9QpDFyO");
+  }, []);
 
   const validate = () => {
     const newErrors = {};
@@ -1376,25 +1655,24 @@ const ContactForm = () => {
   const sendEmail = async (formData) => {
     try {
       const response = await emailjs.send(
-        'service_your_service_id', // You'll need to get this from EmailJS
-        'template_your_template_id', // You'll need to create this in EmailJS
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_email: 'sandanichamoda450@gmail.com',
-          reply_to: formData.email
-        }
-      );
-      
-      if (response.status === 200) {
-        return { success: true };
-      } else {
-        return { success: false, error: 'Failed to send email' };
-      }
+  'service_4j7qwbo',
+  'template_gr772nv',
+  {
+    from_name: formData.name,
+    from_email: formData.email,
+    message: formData.message,
+    to_email: 'sandanichamoda450@gmail.com',
+    reply_to: formData.email
+  },
+  'jyMuZQ_GHR9QpDFyO'
+);
+
+      console.log('EmailJS Response:', response);
+      return { success: true };
     } catch (error) {
       console.error('EmailJS Error:', error);
-      return { success: false, error: 'Email service unavailable' };
+      console.error('Error details:', error.text || error.message);
+      return { success: false, error: error.text || 'Email service unavailable' };
     }
   };
 
@@ -1426,10 +1704,19 @@ const ContactForm = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4 bg-transparent">
+    <motion.section 
+      id="contact" 
+      className="py-20 px-4 bg-transparent"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-100px" }}
+    >
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-10">
+        <motion.div
+          className="text-center mb-10"
+          variants={contactVariants}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-3">
             <span className="text-gray-800 dark:text-white">Get In </span>
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Touch</span>
@@ -1437,22 +1724,32 @@ const ContactForm = () => {
           <p className="text-gray-600 dark:text-gray-400 text-base max-w-2xl mx-auto">
             Let's discuss your next project or collaboration opportunity
           </p>
-        </div>
+        </motion.div>
 
-        <div className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 max-w-2xl mx-auto">
+        <motion.div
+          className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 border border-white/10 max-w-2xl mx-auto"
+          variants={contactVariants}
+          custom={0.2}
+        >
           {submitted ? (
             <div className="text-center py-8">
-              <div className="w-16 h-16 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce">
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-bounce shadow-lg shadow-green-500/50">
+                <svg className="w-10 h-10 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">
-                Message Sent!
+              <h3 className="text-2xl font-bold text-white mb-2">
+                Message Sent Successfully!
               </h3>
-              <p className="text-gray-300 text-sm">
-                I'll get back to you as soon as possible.
+              <p className="text-gray-300 text-sm mb-4">
+                Thank you for reaching out. I'll get back to you as soon as possible.
               </p>
+              <button
+                onClick={() => setSubmitted(false)}
+                className="px-6 py-2 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg hover:from-purple-700 hover:to-blue-700 transition-all"
+              >
+                Send Another Message
+              </button>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -1512,9 +1809,25 @@ const ContactForm = () => {
               >
                 {isSending ? (
                   <>
-                    <svg className="animate-spin h-4 w-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8 018 0 4-4h8v4H8z"></path>
+                    <svg
+                      className="animate-spin h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle
+                        className="opacity-25"
+                        cx="12"
+                        cy="12"
+                        r="10"
+                        stroke="currentColor"
+                        strokeWidth="4"
+                      />
+                      <path
+                        className="opacity-75"
+                        fill="currentColor"
+                        d="M12 2a10 10 0 0 1 10 10h-4a6 6 0 0 0-6-6V2z"
+                      />
                     </svg>
                     <span className="ml-2">Sending...</span>
                   </>
@@ -1527,7 +1840,7 @@ const ContactForm = () => {
               </button>
             </form>
           )}
-        </div>
+        </motion.div>
 
         {/* Quick Contact */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-8 max-w-2xl mx-auto">
@@ -1536,18 +1849,18 @@ const ContactForm = () => {
             <p className="text-sm text-gray-300">Email</p>
           </a>
 
-          <a href="https://www.linkedin.com/in/sandani-chamoda//in/sandani" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+          <a href="https://www.linkedin.com/in/sandani-chamoda/" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
             <Linkedin className="w-5 h-5 text-blue-400 mx-auto mb-2" />
             <p className="text-sm text-gray-300">LinkedIn</p>
           </a>
 
-          <a href="https://github.com/SandaniChamoda/sandani" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
+          <a href="https://github.com/SandaniChamoda/" target="_blank" rel="noopener noreferrer" className="text-center p-4 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 hover:bg-white/10 transition-all group">
             <Github className="w-5 h-5 text-pink-400 mx-auto mb-2" />
             <p className="text-sm text-gray-300">GitHub</p>
           </a>
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
