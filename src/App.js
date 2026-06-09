@@ -689,6 +689,134 @@ const HeroAbout = () => {
   );
 };
 
+
+const ProfileShowcase = () => {
+  const prefersReducedMotion = useReducedMotion();
+  const sectionVariants = prefersReducedMotion ? reducedMotionVariants : staggerContainer;
+  const itemVariants = prefersReducedMotion ? reducedMotionVariants : fadeInUp;
+
+  const profileCards = [
+    {
+      icon: <Code className="w-5 h-5" />,
+      title: "Full-stack Development",
+      text: "React, Next.js, Node.js, Spring Boot, REST APIs, and databases."
+    },
+    {
+      icon: <Palette className="w-5 h-5" />,
+      title: "UI/UX & Prototyping",
+      text: "Figma prototypes, responsive interfaces, and clean user-focused designs."
+    },
+    {
+      icon: <Database className="w-5 h-5" />,
+      title: "Practical Systems",
+      text: "Android apps, database-driven systems, and real-world software solutions."
+    }
+  ];
+
+  return (
+    <section className="relative py-6 px-4 overflow-hidden">
+      <motion.div
+        className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-8 items-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={sectionVariants}
+      >
+        {/* Profile Image */}
+        <motion.div
+          variants={itemVariants}
+          className="flex justify-center lg:justify-start"
+        >
+          <motion.div
+            className="relative w-full max-w-[360px]"
+            animate={{ y: [0, -8, 0] }}
+            transition={{
+              duration: 4,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          >
+            {/* Soft background matching page */}
+            <div className="absolute -inset-4 bg-[#120421]/60 rounded-3xl blur-2xl" />
+
+            {/* Floating square */}
+            <motion.div
+              className="absolute -top-4 -left-4 w-16 h-16 rounded-2xl border border-white/10 bg-[#120421]/40 backdrop-blur-sm"
+              animate={{
+                y: [0, -10, 0],
+                rotate: [0, 8, 0],
+              }}
+              transition={{
+                duration: 5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Floating circle */}
+            <motion.div
+              className="absolute -bottom-4 -right-4 w-20 h-20 rounded-full border border-white/10 bg-[#120421]/40 backdrop-blur-sm"
+              animate={{
+                y: [0, 10, 0],
+                rotate: [0, -10, 0],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }}
+            />
+
+            {/* Image Card */}
+            <motion.div
+              whileHover={{
+                scale: 1.02,
+              }}
+              transition={{ duration: 0.3 }}
+              className="relative rounded-3xl overflow-hidden border border-white/10 bg-[#120421]/30 backdrop-blur-sm shadow-[0_0_35px_rgba(0,0,0,0.25)]"
+            >
+              <img
+                src="/sandani.png"
+                alt="Sandani Chamoda"
+                className="w-full h-[360px] object-cover object-top"
+              />
+            </motion.div>
+          </motion.div>
+        </motion.div>
+
+        {/* Right Side Cards */}
+        <motion.div variants={itemVariants} className="space-y-4">
+          {profileCards.map((card, index) => (
+            <motion.div
+              key={card.title}
+              variants={itemVariants}
+              custom={index}
+              whileHover={{
+                y: -5,
+                scale: 1.01,
+              }}
+              className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-5 hover:border-purple-400/20 transition-all duration-300"
+            >
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-600 to-blue-600 flex items-center justify-center text-white shadow-lg shadow-purple-500/20">
+                {card.icon}
+              </div>
+
+              <div>
+                <h3 className="text-white font-semibold text-base mb-1">
+                  {card.title}
+                </h3>
+                <p className="text-gray-400 text-sm leading-relaxed">
+                  {card.text}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
 // Education & Experience Section
 const LetterGlitch = () => {
   const canvasRef = useRef(null);
@@ -2144,6 +2272,7 @@ const App = () => {
         
         <main>
           <HeroAbout />
+           <ProfileShowcase />
           <EducationExperience />
           <Skills />
           <WorkExperience />
