@@ -1112,7 +1112,7 @@ const EducationExperience = () => {
                 <div className="bg-white/5 rounded-lg p-2.5 border border-blue-500/10">
                   <h4 className="font-semibold text-white text-xs leading-tight">G.C.E. Advanced Level</h4>
                   <p className="text-xs text-blue-300 leading-tight">
-                    Artificial Intelligence Stream
+                    Physical Science Stream
                   </p>
                   <p className="text-xs text-gray-400 leading-tight">
                     Sangamiththa Balika Vidyalaya, Galle
